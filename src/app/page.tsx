@@ -1,9 +1,31 @@
-export default function Home() {
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { XOHero } from "@/components/XOHero";
+import { XOPhilosophy } from "@/components/XOPhilosophy";
+import { XOCollections } from "@/components/XOCollections";
+import { XOCraftsmanship } from "@/components/XOCraftsmanship";
+import { XORecognition } from "@/components/XORecognition";
+import { XOServices } from "@/components/XOServices";
+import { XOStudioTeaser } from "@/components/XOStudioTeaser";
+import { XOBookCTA } from "@/components/XOBookCTA";
+import { XOSantaliTeaser } from "@/components/XOSantaliTeaser";
+
+export default function HomePage() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
-    </main>
+    <>
+      <SiteHeader />
+      <main>
+        <XOHero />
+        <XOPhilosophy />
+        <XOCollections />
+        <XOCraftsmanship />
+        <XORecognition />
+        <XOServices />
+        <XOStudioTeaser />
+        <XOBookCTA />
+        <XOSantaliTeaser />
+      </main>
+      <SiteFooter />
+    </>
   );
 }

@@ -7,8 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -18,11 +17,6 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -42,89 +36,503 @@
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  /* XO47 brand tokens */
+  --xo-black: #1C1B18;
+  --xo-clay: #8C6A4A;
+  --xo-forestry: #1A2B1A;
+  --xo-amber: #BE7E35;
+  --xo-beige: #EDE8E0;
+  --xo-dove: #F4F1EB;
+  --xo-milk: #FAF8F4;
+  --xo-mid: #9A9590;
+  --header-height: 56px;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* XO47 Brand Colors */
+  --xo-black: #1C1B18;
+  --xo-clay: #8C6A4A;
+  --xo-forestry: #1A2B1A;
+  --xo-amber: #BE7E35;
+  --xo-beige: #EDE8E0;
+  --xo-dove: #F4F1EB;
+  --xo-milk: #FAF8F4;
+  --xo-mid: #9A9590;
+
+  /* Semantic tokens */
+  --bg: var(--xo-milk);
+  --bg-dark: var(--xo-black);
+  --text-primary: var(--xo-black);
+  --text-secondary: #6B6560;
+  --text-muted: #9A9590;
+  --border: #E0DCD5;
+  --accent: var(--xo-clay);
+  --accent-gold: var(--xo-amber);
+
+  /* Transitions */
+  --tr-fast: 0.2s ease;
+  --tr-med: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --tr-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Typography scale */
+  --font-label: 10px;
+  --font-body: 15px;
+  --font-body-sm: 14px;
+  --font-h1: clamp(40px, 6vw, 80px);
+  --font-h2: clamp(28px, 4vw, 52px);
+  --font-h3: clamp(20px, 2.5vw, 32px);
+
+  /* Spacing scale */
+  --space-section: 96px;
+  --space-section-sm: 64px;
+  --space-inner: 48px;
+  --space-inner-sm: 20px;
+
+  /* Max content width */
+  --max-content: 1200px;
+
+  /* Body text color (slightly lighter than full black) */
+  --text-body: #4A4845;
+  --text-body-light: #6B6560;
+
+  /* Shadcn/Tailwind compatibility tokens */
+  --background: #FAF8F4;
+  --foreground: #1C1B18;
+  --card: #FAF8F4;
+  --card-foreground: #1C1B18;
+  --popover: #FAF8F4;
+  --popover-foreground: #1C1B18;
+  --primary: #1C1B18;
+  --primary-foreground: #FAF8F4;
+  --secondary: #EDE8E0;
+  --secondary-foreground: #1C1B18;
+  --muted: #F4F1EB;
+  --muted-foreground: #9A9590;
+  --accent-foreground: #1C1B18;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --input: #E0DCD5;
+  --ring: #9A9590;
+  --radius: 0rem;
+  --sidebar: #F4F1EB;
+  --sidebar-foreground: #1C1B18;
+  --sidebar-primary: #1C1B18;
+  --sidebar-primary-foreground: #FAF8F4;
+  --sidebar-accent: #EDE8E0;
+  --sidebar-accent-foreground: #1C1B18;
+  --sidebar-border: #E0DCD5;
+  --sidebar-ring: #9A9590;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+body {
+  background-color: var(--xo-milk);
+  color: var(--xo-black);
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter), 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--xo-black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   html {
-    @apply font-sans;
+    scroll-behavior: smooth;
   }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   XO47 PREMIUM UTILITY CLASSES
+   ============================================ */
+
+/* Content container */
+.xo-container {
+  max-width: var(--max-content);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Label style */
+.xo-label {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9A9590;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Section heading */
+.xo-h2 {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1C1B18;
+}
+
+/* Refined divider */
+.xo-rule {
+  border: none;
+  border-top: 1px solid #E0DCD5;
+  margin: 0;
+}
+.xo-rule-dark {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 0;
+}
+
+/* Premium link */
+.xo-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.xo-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.xo-link:hover::after { transform: scaleX(1); }
+
+/* Scroll-triggered fade in */
+.xo-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.xo-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image hover */
+.xo-img-hover { overflow: hidden; }
+.xo-img-hover img,
+.xo-img-hover > span > img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.xo-img-hover:hover img,
+.xo-img-hover:hover > span > img {
+  transform: scale(1.04);
+}
+
+/* Hairline border */
+.xo-border { border: 1px solid #E0DCD5; }
+.xo-border-dark { border: 1px solid rgba(255,255,255,0.1); }
+
+/* Heading utility */
+.xo-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Refined divider (legacy) */
+.xo-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* Header scroll behavior */
+.header-hidden {
+  transform: translateY(-100%);
+}
+.header-visible {
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------------------------
+   ImageCarousel component styles
+   ------------------------------------------------------------------------- */
+
+/* Image wrapper — 50/50 split */
+.carousel-img-wrapper-half {
+  flex: 1;
+  height: 730px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Image wrapper — full width */
+.carousel-img-wrapper-full {
+  flex: 0 0 100%;
+  height: 730px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Split variant: each <a> takes equal space and positions label */
+.carousel-split-link {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+
+/* Responsive: on mobile (< 640px) stack images vertically */
+@media (max-width: 639px) {
+  .carousel-section {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Single-link: make the flex row wrap into a column */
+  .carousel-section > a > div {
+    flex-direction: column;
+  }
+
+  /* Split variant: make the outer flex row a column */
+  .carousel-section > div {
+    flex-direction: column;
+  }
+
+  .carousel-img-wrapper-half,
+  .carousel-img-wrapper-full {
+    flex: 0 0 350px;
+    height: 350px;
+    width: 100%;
+  }
+
+  .carousel-split-link {
+    flex: none;
+    height: auto;
+  }
+}
+
+/* ============================================
+   ANIMATION SYSTEM — Snappy, purposeful
+   ============================================ */
+
+/* Reduced motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Fade-in-up: page section entry */
+.xo-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.xo-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.xo-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.xo-stagger > *:nth-child(2) { transition-delay: 60ms; }
+.xo-stagger > *:nth-child(3) { transition-delay: 120ms; }
+.xo-stagger > *:nth-child(4) { transition-delay: 180ms; }
+.xo-stagger > *:nth-child(5) { transition-delay: 240ms; }
+.xo-stagger > *:nth-child(6) { transition-delay: 300ms; }
+
+/* Buttons */
+.xo-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  background-color: #1C1B18;
+  color: #FAF8F4;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+.xo-btn-primary:hover { opacity: 0.85; }
+.xo-btn-primary:active { transform: scale(0.98); }
+
+.xo-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  background-color: transparent;
+  color: #1C1B18;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #1C1B18;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+.xo-btn-outline:hover {
+  background-color: #1C1B18;
+  color: #FAF8F4;
+}
+
+/* Light button variant — for use on dark backgrounds */
+.xo-btn-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  background-color: #FAF8F4;
+  color: #1C1B18;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+.xo-btn-light:hover { opacity: 0.88; }
+.xo-btn-light:active { transform: scale(0.98); }
+
+/* Outline light — for use on dark backgrounds */
+.xo-btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  background-color: transparent;
+  color: #FAF8F4;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(250,248,244,0.5);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+.xo-btn-outline-light:hover {
+  background-color: rgba(250,248,244,0.1);
+  border-color: #FAF8F4;
+}
+
+/* Mobile responsive helpers */
+.xo-section-pad {
+  padding: 64px 20px;
+}
+@media (min-width: 640px) {
+  .xo-section-pad { padding: 80px 32px; }
+}
+@media (min-width: 1024px) {
+  .xo-section-pad { padding: 96px 48px; }
+}
+
+.xo-hero-pad {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (min-width: 640px) {
+  .xo-hero-pad { padding-left: 40px; padding-right: 40px; }
+}
+@media (min-width: 1024px) {
+  .xo-hero-pad { padding-left: 64px; padding-right: 64px; }
+}
+
+/* ============================================
+   PREMIUM DESIGN SYSTEM v2
+   ============================================ */
+
+body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #1C1B18;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.xo-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Refined dividers */
+.xo-rule { border: none; border-top: 1px solid #E0DCD5; margin: 0; }
+.xo-rule-dark { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0; }
+
+/* Hairline border */
+.xo-border { border: 1px solid #E0DCD5; }
+
+/* Premium section heading */
+.xo-h2 {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1C1B18;
+  margin: 0;
+}
+
+/* Muted label */
+.xo-label-text {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9A9590;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
 }
