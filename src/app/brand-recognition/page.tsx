@@ -1,217 +1,118 @@
-"use client";
+import { Reveal } from "@/components/xo/Reveal";
+import { Figure } from "@/components/xo/Figure";
+import { CTABand } from "@/components/xo/home/sections";
+import { FACES, img } from "@/lib/xo-data";
 
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { useInView } from "@/hooks/useInView";
-
-const celebrities = [
-  { name: "Shahid Kapoor", role: "Actor" },
-  { name: "Rohit Saraf", role: "Actor" },
-  { name: "Ishaan Khattar", role: "Actor" },
-  { name: "Abhay Deol", role: "Actor" },
-  { name: "Viviane Divine", role: "Artist" },
-  { name: "Karron S. Dhinggra", role: "Entrepreneur" },
-];
-
-function NameRow({ person, index }: { person: typeof celebrities[0]; index: number }) {
-  const { ref, isVisible } = useInView();
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={`br-name-row xo-fade-in${isVisible ? " is-visible" : ""}`}
-      style={{
-        padding: "32px 0",
-        borderBottom: "1px solid #E0DCD5",
-        borderTop: index === 0 ? "1px solid #E0DCD5" : undefined,
-        transitionDelay: `${index * 80}ms`,
-      }}
-    >
-      <span
-        style={{
-          fontSize: "clamp(22px, 3.5vw, 40px)",
-          fontWeight: 200,
-          letterSpacing: "-0.01em",
-          color: "#1C1B18",
-          lineHeight: 1,
-          display: "block",
-        }}
-      >
-        {person.name}
-      </span>
-      <span
-        className="br-role"
-        style={{
-          fontSize: 10,
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "#9A9590",
-          fontWeight: 400,
-        }}
-      >
-        {person.role}
-      </span>
-    </div>
-  );
-}
+export const metadata = {
+  title: "Brand Recognition — As Worn By | XO47",
+  description:
+    "XO47 has dressed some of India's most recognised figures across cinema, culture and public life — on red carpets, at weddings, and in the moments where presence is paramount.",
+};
 
 export default function BrandRecognitionPage() {
-  const { ref: quoteRef, isVisible: quoteVisible } = useInView();
-
   return (
-    <>
-      <style>{`
-        .br-hero {
-          background-color: #1C1B18;
-          padding: 80px 20px;
-          padding-top: calc(80px + 56px);
-        }
-        @media (min-width: 640px) {
-          .br-hero {
-            padding: 100px 32px 80px;
-            padding-top: calc(100px + 56px);
-          }
-        }
-        @media (min-width: 1024px) {
-          .br-hero {
-            padding: 120px 48px 80px;
-            padding-top: calc(120px + 56px);
-          }
-        }
-        .br-names-section {
-          background-color: #FAF8F4;
-          padding: 64px 20px;
-        }
-        @media (min-width: 640px) {
-          .br-names-section {
-            padding: 80px 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .br-names-section {
-            padding: 80px 48px;
-          }
-        }
-        .br-name-row {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-        @media (min-width: 640px) {
-          .br-name-row {
-            flex-direction: row;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 24px;
-          }
-        }
-        .br-role {
-          flex-shrink: 0;
-        }
-        .br-quote {
-          background-color: #1C1B18;
-          padding: 80px 20px;
-          text-align: center;
-        }
-        @media (min-width: 640px) {
-          .br-quote {
-            padding: 100px 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .br-quote {
-            padding: 120px 48px;
-          }
-        }
-      `}</style>
-      <SiteHeader />
-      <main style={{ paddingTop: 56 }}>
+    <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
+      {/* hero */}
+      <section style={{ padding: "150px 0 0" }}>
+        <div className="wrap-wide">
+          <Reveal>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
+              <span className="over">Brand Recognition</span>
+              <span className="over" style={{ color: "var(--muted)" }}>As worn by</span>
+            </div>
+          </Reveal>
+          <Reveal delay={1}>
+            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(24px,4vw,52px) 0 clamp(20px,3vw,36px)", maxWidth: "15ch" }}>
+              Worn for the moments that <span className="italic serif-accent">matter.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="lede" style={{ maxWidth: "56ch" }}>
+              The room you walk into. The deal you close. The nights that become a memory. XO47 has dressed
+              individuals across cinema, culture, sport and public life &mdash; a quiet measure of the house&apos;s
+              place in India&apos;s contemporary style.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Header Section */}
-        <section className="br-hero">
-          <p
-            style={{
-              fontSize: 11,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-              marginBottom: 24,
-              marginTop: 0,
-              fontWeight: 400,
-            }}
-          >
-            As Worn By
-          </p>
-          <h1
-            style={{
-              fontWeight: 200,
-              fontSize: "clamp(36px, 5vw, 64px)",
-              letterSpacing: "-0.025em",
-              color: "#FAF8F4",
-              lineHeight: 1.1,
-              margin: "0 0 32px",
-            }}
-          >
-            Brand Recognition
-          </h1>
-          <p
-            style={{
-              fontSize: 15,
-              fontWeight: 300,
-              color: "rgba(255,255,255,0.42)",
-              maxWidth: 560,
-              lineHeight: 1.85,
-              margin: 0,
-            }}
-          >
-            XO47 garments have been worn by some of India&apos;s most recognised figures across cinema, culture, and public life — a testament to the house&apos;s growing presence within India&apos;s contemporary style landscape.
-          </p>
-        </section>
+      {/* feature image */}
+      <section style={{ padding: "clamp(60px,8vw,110px) 0 0" }}>
+        <div className="wrap-wide">
+          <Reveal>
+            <div className="clip">
+              <Figure src={img("look-02.jpg")} alt="A black tuxedo by XO47" float style={{ aspectRatio: "16/10", maxHeight: "84vh" }} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Names Section */}
-        <section className="br-names-section">
-          <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-            {celebrities.map((person, i) => (
-              <NameRow key={person.name} person={person} index={i} />
+      {/* faces grid — numbered */}
+      <section style={{ padding: "clamp(70px,9vw,120px) 0 clamp(60px,8vw,100px)" }}>
+        <div className="wrap-wide">
+          <Reveal>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 22, marginBottom: 44 }}>
+              <span className="over">As Worn By</span>
+              <span className="over" style={{ color: "var(--muted)" }}>{String(FACES.length).padStart(2, "0")} names</span>
+            </div>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: "20px 44px" }}>
+            {FACES.map((f, i) => (
+              <Reveal key={f} delay={((i % 3) + 1) as 1 | 2 | 3}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 16, borderTop: "1px solid var(--ink)", paddingTop: 20 }}>
+                  <span className="mono" style={{ color: "var(--clay)" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display d-2">{f}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Closing Quote Section */}
-        <section
-          ref={quoteRef as React.RefObject<HTMLElement>}
-          className={`br-quote xo-fade-in${quoteVisible ? " is-visible" : ""}`}
-        >
-          <p
-            style={{
-              fontSize: 11,
-              letterSpacing: "0.3em",
-              color: "rgba(255,255,255,0.3)",
-              textTransform: "uppercase",
-              marginBottom: 40,
-              marginTop: 0,
-              fontWeight: 400,
-            }}
-          >
-            The XO47 Presence
-          </p>
-          <blockquote
-            style={{
-              fontSize: "clamp(14px, 1.5vw, 16px)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "rgba(255,255,255,0.42)",
-              maxWidth: 620,
-              margin: "0 auto",
-              lineHeight: 1.9,
-              textAlign: "center",
-            }}
-          >
-            &ldquo;The XO47 garments have been worn at red carpets, cultural events, and significant occasions, reflecting the brand&apos;s growing presence within India&apos;s contemporary style landscape.&rdquo;
-          </blockquote>
-        </section>
+      {/* name marquee */}
+      <section style={{ overflow: "hidden" }}>
+        <div className="marq" style={{ borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", padding: "26px 0" }}>
+          <div style={{ display: "inline-block", animation: "marq 48s linear infinite" }}>
+            {[...FACES, ...FACES, ...FACES].map((nm, i) => (
+              <span key={i} className="display d-2" style={{ marginRight: 40 }}>
+                {nm}<span className="italic serif-accent" style={{ margin: "0 22px", opacity: 0.8 }}>&mdash;</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      </main>
-      <SiteFooter />
-    </>
+      {/* presence copy */}
+      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "clamp(90px,12vw,160px) 0", overflow: "hidden" }}>
+        <div className="wrap">
+          <Reveal>
+            <div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 28 }}>The XO47 Presence</div>
+          </Reveal>
+          <Reveal delay={1}>
+            <h2 className="display d-1" style={{ marginBottom: 40, maxWidth: "16ch" }}>
+              Presence is the only thing that <span className="italic" style={{ color: "var(--amber-2)" }}>carries.</span>
+            </h2>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(290px,1fr))", gap: 50, maxWidth: 1040 }}>
+            <Reveal delay={1}>
+              <p className="lede" style={{ color: "var(--on-dark-mut)", margin: 0 }}>
+                XO47 garments have been worn at red carpets and cultural evenings, at weddings and the milestones a
+                family remembers for a lifetime. The house does not dress for the photograph; it dresses for the
+                man inside it &mdash; and the image follows on its own.
+              </p>
+            </Reveal>
+            <Reveal delay={2}>
+              <p className="lede" style={{ color: "var(--on-dark-mut)", margin: 0 }}>
+                Recognition here is earned quietly, through word of mouth and genuine connection rather than noise.
+                That public figures across entertainment and public life return to the house is its own kind of
+                proof &mdash; of a presence felt long before it is seen.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <CTABand />
+    </div>
   );
 }

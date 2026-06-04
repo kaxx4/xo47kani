@@ -1,18 +1,55 @@
-import { CategoryPageLayout } from "@/components/CategoryPageLayout";
-import { getProductsByCategory, CATEGORY_META } from "@/lib/products";
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { CategoryPageLayout } from "@/components/xo/CategoryPageLayout";
+import { PRODUCTS } from "@/lib/xo-data";
+import { getCategory } from "@/lib/xo-categories";
 
-export default async function CollectionPage({ params }: { params: Promise<{ category: string }> }) {
+export function generateStaticParams() {
+  return [
+    { category: "suits" },
+    { category: "blazers" },
+    { category: "tuxedos" },
+    { category: "trousers" },
+    { category: "shirts" },
+    { category: "occasion" },
+    { category: "black-tie" },
+  ];
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}): Promise<Metadata> {
   const { category } = await params;
-  const meta = CATEGORY_META[category];
-  const products = getProductsByCategory(category);
-  if (!meta) notFound();
+  const copy = getCategory(category);
+  return {
+    title: `${copy.title.replace(/\.$/, "")} — ${copy.eyebrow} | XO47`,
+    description: copy.intro,
+  };
+}
+
+export default async function CollectionCategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
+  const copy = getCategory(category);
+  const products = copy.filter ? PRODUCTS.filter((p) => p.cat === copy.filter) : PRODUCTS;
+  const lead = copy.title.slice(0, copy.title.length - copy.accent.length);
+
   return (
     <CategoryPageLayout
-      title={meta?.title ?? category.charAt(0).toUpperCase() + category.slice(1)}
-      description={meta?.description}
-      heroImage={meta?.heroImage ?? "/images/products/X04701947-2-a.jpg"}
+      eyebrow={copy.eyebrow}
+      title={
+        <>
+          {lead}
+          <span className="italic serif-accent">{copy.accent}</span>
+        </>
+      }
+      intro={copy.intro}
       products={products}
+      emptyNote="This chapter is being woven. Speak with the atelier to commission a piece."
     />
   );
 }

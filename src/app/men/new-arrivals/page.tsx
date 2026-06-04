@@ -1,15 +1,26 @@
-import { CategoryPageLayout } from "@/components/CategoryPageLayout";
-import { getProductsByCategory, CATEGORY_META } from "@/lib/products";
+import type { Metadata } from "next";
+import { CategoryPageLayout } from "@/components/xo/CategoryPageLayout";
+import { getCategory } from "@/lib/xo-categories";
+
+const copy = getCategory("new-arrivals");
+
+export const metadata: Metadata = {
+  title: "New Arrivals | XO47",
+  description: copy.intro,
+};
 
 export default function NewArrivalsPage() {
-  const meta = CATEGORY_META["new-arrivals"];
-  const products = getProductsByCategory("new-arrivals");
   return (
     <CategoryPageLayout
-      title={meta.title}
-      description={meta.description}
-      heroImage={meta.heroImage}
-      products={products}
+      eyebrow={copy.eyebrow}
+      title={
+        <>
+          The latest, <span className="italic serif-accent">cut fresh.</span>
+        </>
+      }
+      intro={copy.intro}
+      products={[]}
+      emptyNote="This chapter is being woven — speak with the atelier to commission a piece."
     />
   );
 }

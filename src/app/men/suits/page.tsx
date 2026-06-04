@@ -1,15 +1,29 @@
-import { CategoryPageLayout } from "@/components/CategoryPageLayout";
-import { getProductsByCategory, CATEGORY_META } from "@/lib/products";
+import type { Metadata } from "next";
+import { CategoryPageLayout } from "@/components/xo/CategoryPageLayout";
+import { PRODUCTS } from "@/lib/xo-data";
+import { getCategory } from "@/lib/xo-categories";
+
+const copy = getCategory("suits");
+
+export const metadata: Metadata = {
+  title: "Signature Suits | XO47",
+  description: copy.intro,
+};
 
 export default function SuitsPage() {
-  const meta = CATEGORY_META["suits"];
-  const products = getProductsByCategory("suits");
+  const products = copy.filter ? PRODUCTS.filter((p) => p.cat === copy.filter) : PRODUCTS;
+
   return (
     <CategoryPageLayout
-      title={meta.title}
-      description={meta.description}
-      heroImage={meta.heroImage}
+      eyebrow={copy.eyebrow}
+      title={
+        <>
+          Cut to a single <span className="italic serif-accent">body.</span>
+        </>
+      }
+      intro={copy.intro}
       products={products}
+      emptyNote="This chapter is being woven. Speak with the atelier to commission a piece."
     />
   );
 }

@@ -1,285 +1,124 @@
-"use client";
-
 import Link from "next/link";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { XOBookCTA } from "@/components/XOBookCTA";
-import { useInView } from "@/hooks/useInView";
+import { Reveal } from "@/components/xo/Reveal";
+import { CTABand } from "@/components/xo/home/sections";
+import { SERVICES } from "@/lib/xo-data";
 
-const services = [
-  {
-    num: "01",
-    title: "Signature Formalwear",
-    description:
-      "The foundation of the house. Blazers and suits crafted with precision for the modern professional.",
-    detail:
-      "Available in a curated selection of fabrics — wool, linen, silk blends, and seasonal weaves — sourced from mills in Italy, England, and India. Consultation is required for all Signature Formalwear commissions.",
-    note: "Consultation required · Fabric selection included",
-  },
-  {
-    num: "02",
-    title: "Bespoke Experience",
-    description:
-      "Fully hand-crafted garments for those seeking the purest form of tailoring. Available upon request at an additional cost.",
-    detail:
-      "The Bespoke Experience represents the highest expression of what XO47 does. Every element — canvas, lining, buttons, stitching — is executed by hand, to your specifications, in the traditional manner. Lead times are longer, and the result is singular.",
-    note: "Available upon request · Additional cost applies",
-  },
-  {
-    num: "03",
-    title: "Occasion Wear",
-    description:
-      "Garments designed for life's defining moments: weddings, tuxedo dressing, red carpets, and significant milestones.",
-    detail:
-      "Occasion Wear at XO47 spans the full range of formal and ceremonial dressing — from black tie tuxedos to wedding sherwanis, Nehru jackets, and event suits. We approach every occasion with the same care and intention, regardless of the context.",
-    note: "Weddings · Black Tie · Red Carpet · Ceremonies",
-  },
-  {
-    num: "04",
-    title: "Wardrobe Consultation",
-    description:
-      "A styling and wardrobe-building session to refine your strategy for work, events, and lifestyle.",
-    detail:
-      "Not all engagements begin with a garment. The Wardrobe Consultation is a structured conversation about how you dress — what works, what doesn't, and what your wardrobe should be doing for you. We offer clear, considered direction, without the noise of trend or the pressure of a transaction.",
-    note: "Available as a standalone session",
-  },
-  {
-    num: "05",
-    title: "Home Appointments",
-    description:
-      "An exclusive private experience for our Delhi clients. We come to you.",
-    detail:
-      "For clients based in Delhi who prefer the consultation to take place at home or in the office, XO47 offers private home appointments. The full studio experience — fabric samples, design discussion, measurements — is brought to your door.",
-    note: "Delhi only · Subject to availability",
-  },
-  {
-    num: "06",
-    title: "Exhibitions & Pop-Ups",
-    description:
-      "XO47 engages with global audiences through select trade shows, pop-ups, and exhibitions.",
-    detail:
-      "XO47 participates in curated events across India and internationally — offering a chance to experience the house, the fabrics, and the craft in person, outside of the studio environment. Follow @studio.xo47 for upcoming dates and locations.",
-    note: "Dates announced via @studio.xo47",
-  },
-];
+export const metadata = {
+  title: "Services — The House, At Your Service | XO47",
+  description:
+    "From the Bespoke Experience to home appointments, the full range of the XO47 maison. Enquiry-based bespoke menswear, drafted for one body. By appointment in New Delhi.",
+};
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
-  const { ref, isVisible } = useInView();
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={`service-card xo-fade-in${isVisible ? " is-visible" : ""}`}
-      style={{
-        backgroundColor: index % 2 === 0 ? "#FAF8F4" : "#EDE8E0",
-        borderBottom: "1px solid #E0DCD5",
-      }}
-    >
-      <div className="service-inner">
-        {/* Number — desktop only via CSS */}
-        <div className="service-num">
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: 400,
-              color: "#8C6A4A",
-              letterSpacing: "0.1em",
-            }}
-          >
-            {service.num}
-          </span>
-        </div>
+/* Map a service name to its dedicated sub-page where one exists,
+   else route the enquiry to the consultation flow. */
+const SLUG: Record<string, string> = {
+  "Bespoke Experience": "/services/custom-suits",
+  "Wardrobe Consultation": "/services/style-advice",
+  "Home Appointments": "/services/stores",
+  "Exhibitions & Pop-ups": "/services/stores",
+};
 
-        {/* Content */}
-        <div style={{ flex: 1 }}>
-          <h2
-            style={{
-              fontSize: 17,
-              fontWeight: 300,
-              letterSpacing: "0.02em",
-              color: "#1C1B18",
-              marginTop: 0,
-              marginBottom: 12,
-            }}
-          >
-            {service.title}
-          </h2>
-          <p
-            style={{
-              fontSize: 14,
-              fontWeight: 300,
-              color: "#6B6560",
-              lineHeight: 1.85,
-              marginBottom: 20,
-              marginTop: 0,
-            }}
-          >
-            {service.description}
-          </p>
-          <p
-            style={{
-              fontSize: 14,
-              fontWeight: 300,
-              color: "#6B6560",
-              lineHeight: 1.85,
-              marginBottom: 20,
-              marginTop: 0,
-            }}
-          >
-            {service.detail}
-          </p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "16px",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 11,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "#9A9590",
-                fontWeight: 400,
-              }}
-            >
-              {service.note}
-            </span>
-            <Link
-              href="/book-consultation"
-              style={{
-                fontSize: 10,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "#8C6A4A",
-                textDecoration: "none",
-                borderBottom: "1px solid rgba(140,106,74,0.35)",
-                paddingBottom: 2,
-              }}
-            >
-              Enquire
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+function hrefFor(name: string): string {
+  return SLUG[name] ?? "/book-consultation";
+}
+
+/* A row either opens its discipline page or jumps to the enquiry form;
+   the affordance label should match the destination. */
+function affordanceFor(name: string): string {
+  return SLUG[name] ? "Enquire →" : "Begin an enquiry →";
 }
 
 export default function ServicesPage() {
   return (
-    <>
-      <style>{`
-        .services-hero {
-          background-color: #1C1B18;
-          padding: 80px 20px;
-          padding-top: calc(80px + 56px);
-        }
-        @media (min-width: 640px) {
-          .services-hero {
-            padding: 100px 32px 80px;
-            padding-top: calc(100px + 56px);
-          }
-        }
-        @media (min-width: 1024px) {
-          .services-hero {
-            padding: 120px 48px 80px;
-            padding-top: calc(120px + 56px);
-          }
-        }
-        .service-card {
-          padding: 40px 20px;
-        }
-        @media (min-width: 640px) {
-          .service-card {
-            padding: 48px 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .service-card {
-            padding: 56px 48px;
-          }
-        }
-        .service-inner {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          max-width: 1100px;
-          margin: 0 auto;
-        }
-        @media (min-width: 480px) {
-          .service-inner {
-            flex-direction: row;
-            gap: 64px;
-            align-items: flex-start;
-          }
-        }
-        .service-num {
-          display: none;
-          flex-shrink: 0;
-        }
-        @media (min-width: 640px) {
-          .service-num {
-            display: block;
-          }
-        }
-      `}</style>
-      <SiteHeader />
-      <main style={{ paddingTop: 56 }}>
+    <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
+      {/* hero */}
+      <section style={{ padding: "150px 0 0" }}>
+        <div className="wrap-wide">
+          <Reveal>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "baseline",
+                borderBottom: "1px solid var(--ink)",
+                paddingBottom: 18,
+              }}
+            >
+              <span className="over">Services</span>
+              <span className="over" style={{ color: "var(--muted)" }}>By appointment</span>
+            </div>
+          </Reveal>
+          <Reveal delay={1}>
+            <h1
+              className="display"
+              style={{
+                fontSize: "clamp(3rem,9vw,9rem)",
+                lineHeight: 0.9,
+                margin: "clamp(24px,4vw,52px) 0 clamp(20px,3vw,36px)",
+                maxWidth: "15ch",
+              }}
+            >
+              The house, at your <span className="italic serif-accent">service.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="lede" style={{ maxWidth: "56ch" }}>
+              Tailoring is personal, and considered. Every engagement begins not with a measurement but
+              with a conversation &mdash; the man, the occasion, the intent. What follows is a garment
+              drafted for one body, and one only.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Header Section */}
-        <section className="services-hero">
-          <p
-            style={{
-              fontSize: 11,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-              marginBottom: 24,
-              marginTop: 0,
-              fontWeight: 400,
-            }}
-          >
-            What We Offer
-          </p>
-          <h1
-            style={{
-              fontWeight: 200,
-              fontSize: "clamp(40px, 6vw, 80px)",
-              letterSpacing: "-0.03em",
-              color: "#FAF8F4",
-              lineHeight: 1.05,
-              margin: "0 0 32px",
-            }}
-          >
-            Services
-          </h1>
-          <p
-            style={{
-              fontSize: 15,
-              fontWeight: 300,
-              color: "rgba(255,255,255,0.4)",
-              maxWidth: 480,
-              lineHeight: 1.8,
-              margin: 0,
-            }}
-          >
-            Tailoring is personal and considered. Every engagement begins with a conversation.
-          </p>
-        </section>
+      {/* services index — large numbered rows */}
+      <section style={{ padding: "clamp(60px,8vw,110px) 0 clamp(80px,10vw,130px)" }}>
+        <div className="wrap">
+          <Reveal>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "baseline",
+                borderBottom: "1px solid var(--ink)",
+                paddingBottom: 20,
+                marginBottom: 4,
+              }}
+            >
+              <span className="over">The Offering</span>
+              <span className="over" style={{ color: "var(--muted)" }}>06 disciplines</span>
+            </div>
+          </Reveal>
+          {SERVICES.map((s) => (
+            <Reveal key={s[0]} delay={1}>
+              <Link
+                href={hrefFor(s[1])}
+                className="svc-row"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "64px 1fr",
+                  gap: 24,
+                  alignItems: "start",
+                  borderBottom: "1px solid var(--line)",
+                  padding: "32px 0",
+                }}
+              >
+                <span className="display d-3" style={{ color: "var(--clay)" }}>{s[0]}</span>
+                <div className="svc-inner" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
+                  <h2 className="display d-2">{s[1]}</h2>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+                    <p className="lede" style={{ fontSize: "0.98rem", color: "var(--ink-2)", margin: 0, maxWidth: "52ch" }}>{s[2]}</p>
+                    <span className="ulink" style={{ color: "var(--clay)" }}>{affordanceFor(s[1])}</span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-        {/* Service Cards */}
-        {services.map((service, i) => (
-          <ServiceCard key={service.num} service={service} index={i} />
-        ))}
-
-        {/* Book CTA */}
-        <XOBookCTA />
-
-      </main>
-      <SiteFooter />
-    </>
+      <CTABand />
+      <style>{`@media(min-width:820px){.svc-inner{grid-template-columns:1fr 1.4fr !important;gap:36px !important;align-items:baseline}}`}</style>
+    </div>
   );
 }

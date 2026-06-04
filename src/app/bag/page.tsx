@@ -1,192 +1,73 @@
-"use client";
-
-import { ShoppingBag } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import { Reveal } from "@/components/xo/Reveal";
+
+export const metadata: Metadata = {
+  title: "Your Selections | XO47",
+  description:
+    "XO47 is a bespoke house — wardrobes are built by commission and conversation, not by cart. Explore the collections or book a consultation at the atelier in Ambawatta One, Mehrauli.",
+};
 
 export default function BagPage() {
   return (
-    <>
-      <style>{`
-        .bag-outer {
-          padding: 32px 20px 60px;
-        }
-        @media (min-width: 768px) {
-          .bag-outer {
-            padding: 48px 48px 80px;
-          }
-        }
-        .bag-layout {
-          display: flex;
-          flex-direction: column;
-          gap: 32px;
-        }
-        @media (min-width: 768px) {
-          .bag-layout {
-            flex-direction: row;
-            align-items: flex-start;
-          }
-        }
-        .bag-items {
-          flex: 1;
-        }
-        .bag-summary {
-          width: 100%;
-        }
-        @media (min-width: 768px) {
-          .bag-summary {
-            width: 320px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 76px;
-          }
-        }
-      `}</style>
-      <SiteHeader />
-      <main style={{ paddingTop: 56 }}>
-        <div className="bag-outer">
-          <div className="bag-layout">
-            {/* Left: bag items */}
-            <div className="bag-items">
-              <h1
-                style={{
-                  fontSize: 28,
-                  fontWeight: 200,
-                  color: "#1C1B18",
-                  margin: "0 0 40px",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Your Bag
-              </h1>
-
-              {/* Empty state */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "80px 0",
-                  gap: 12,
-                }}
-              >
-                <ShoppingBag size={32} color="#9A9590" />
-                <p
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 300,
-                    color: "#9A9590",
-                    margin: 0,
-                  }}
-                >
-                  Your bag is empty
-                </p>
-                <div style={{ marginTop: 16 }}>
-                  <Link href="/" className="xo-btn-primary">
-                    Continue Shopping
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: order summary */}
-            <div
-              className="bag-summary"
-              style={{
-                border: "1px solid #E0DCD5",
-                padding: 24,
-              }}
-            >
-              <h2
-                style={{
-                  fontSize: 12,
-                  fontWeight: 500,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "#1C1B18",
-                  margin: "0 0 24px",
-                }}
-              >
-                Order Summary
-              </h2>
-
-              {/* Subtotal row */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: 12,
-                }}
-              >
-                <span style={{ fontSize: 14, fontWeight: 300, color: "#4A4845" }}>
-                  Subtotal
-                </span>
-                <span style={{ fontSize: 14, fontWeight: 300, color: "#4A4845" }}>
-                  ₹0
-                </span>
-              </div>
-
-              {/* Shipping row */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: 20,
-                }}
-              >
-                <span style={{ fontSize: 14, fontWeight: 300, color: "#4A4845" }}>
-                  Shipping
-                </span>
-                <span style={{ fontSize: 14, fontWeight: 300, color: "#9A9590" }}>
-                  Calculated at checkout
-                </span>
-              </div>
-
-              {/* Divider */}
-              <div style={{ height: 1, backgroundColor: "#E0DCD5", marginBottom: 20 }} />
-
-              {/* Total row */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: 24,
-                }}
-              >
-                <span style={{ fontSize: 15, fontWeight: 300, color: "#1C1B18" }}>
-                  Total
-                </span>
-                <span style={{ fontSize: 15, fontWeight: 300, color: "#1C1B18" }}>
-                  ₹0
-                </span>
-              </div>
-
-              {/* Disabled checkout button */}
-              <button
-                disabled
-                style={{
-                  width: "100%",
-                  height: 48,
-                  backgroundColor: "#9A9590",
-                  color: "#FAF8F4",
-                  fontSize: 11,
-                  fontWeight: 500,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  border: "none",
-                  cursor: "not-allowed",
-                  fontFamily: "inherit",
-                }}
-              >
-                Proceed to Checkout
-              </button>
-            </div>
+    <div
+      className="fade-page"
+      style={{
+        background: "var(--milk)",
+        color: "var(--ink)",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div
+        className="wrap"
+        style={{
+          paddingTop: 130,
+          paddingBottom: 110,
+          textAlign: "center",
+          width: "100%",
+        }}
+      >
+        <Reveal>
+          <div className="over" style={{ color: "var(--clay)", marginBottom: 30 }}>
+            Your Selections
           </div>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
+          <h1
+            className="display"
+            style={{
+              fontSize: "clamp(2.8rem,7vw,6rem)",
+              lineHeight: 0.96,
+              marginBottom: 28,
+            }}
+          >
+            Nothing held — <span className="italic serif-accent">yet.</span>
+          </h1>
+          <p className="lede" style={{ maxWidth: "48ch", margin: "0 auto 16px" }}>
+            XO47 is a house of commission. There is no cart to fill and no checkout to
+            rush — a wardrobe is built in conversation, one considered piece at a time.
+          </p>
+          <p className="lede" style={{ maxWidth: "46ch", margin: "0 auto 44px" }}>
+            Begin with the collections, or sit with us at the atelier in Ambawatta One,
+            Mehrauli, and we&apos;ll cut something that is wholly yours.
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: 14,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link className="btn" href="/collections">
+              Explore Collections
+            </Link>
+            <Link className="btn btn-ghost" href="/book-consultation">
+              Book a Consultation
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </div>
   );
 }

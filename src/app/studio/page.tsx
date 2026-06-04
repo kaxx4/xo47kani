@@ -1,429 +1,155 @@
-"use client";
+import { Reveal } from "@/components/xo/Reveal";
+import { Figure } from "@/components/xo/Figure";
+import { CTABand } from "@/components/xo/home/sections";
+import { STORY, img } from "@/lib/xo-data";
 
-import Link from "next/link";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { XOBookCTA } from "@/components/XOBookCTA";
-import { useInView } from "@/hooks/useInView";
+export const metadata = {
+  title: "The Studio — Ambawatta One, Mehrauli | XO47",
+  description:
+    "A private tailoring atelier at Ambawatta One in Mehrauli, New Delhi. Entered by appointment — fabric libraries, the cutting table, and the unhurried space to commission a garment of your own.",
+};
 
-const processSteps = [
-  { num: "01", name: "Consultation" },
-  { num: "02", name: "Fabric Selection" },
-  { num: "03", name: "Design" },
-  { num: "04", name: "Measurements" },
-  { num: "05", name: "Pattern Making" },
-  { num: "06", name: "First Trial" },
-  { num: "07", name: "Final Fitting" },
-  { num: "08", name: "Delivery" },
-];
-
-const keyFacts = [
-  { label: "Founded", value: "2020" },
-  { label: "Founder", value: "Shrey Suneja" },
-  { label: "Location", value: "New Delhi, India" },
-  { label: "Website", value: "weknowtailoring.com" },
-  { label: "Instagram", value: "@studio.xo47" },
-  { label: "Price Range", value: "₹25,000 — ₹4,00,000" },
+const PROCESS: [string, string, string][] = [
+  ["01", "The Conversation", "A welcome before a measurement. We learn the man, the occasion and the intent."],
+  ["02", "The Cloth", "Bunches laid out across the table — weight, season and light, chosen by hand."],
+  ["03", "Measure & Pattern", "Drafted to one body. A paper pattern that belongs to no one else."],
+  ["04", "The Cut", "Half-canvas construction, lapels padded and rolled so the line holds for years."],
+  ["05", "The Trial", "A first fitting in basted form; the silhouette read, refined and made true."],
+  ["06", "The Delivery", "Nothing leaves until it is felt to be right. Then it is wholly yours."],
 ];
 
 export default function StudioPage() {
-  const { ref: aboutRef, isVisible: aboutVisible } = useInView();
-  const { ref: philosophyRef, isVisible: philosophyVisible } = useInView();
-  const { ref: processRef, isVisible: processVisible } = useInView();
-  const { ref: founderRef, isVisible: founderVisible } = useInView();
-
   return (
-    <>
-      <style>{`
-        .studio-hero {
-          background-color: #1C1B18;
-          padding: 80px 20px;
-          padding-top: calc(80px + 56px);
-        }
-        @media (min-width: 640px) {
-          .studio-hero {
-            padding: 100px 32px 80px;
-            padding-top: calc(100px + 56px);
-          }
-        }
-        @media (min-width: 1024px) {
-          .studio-hero {
-            padding: 120px 48px 80px;
-            padding-top: calc(120px + 56px);
-          }
-        }
-        .studio-about {
-          background-color: #FAF8F4;
-          padding: 64px 20px;
-        }
-        @media (min-width: 640px) {
-          .studio-about {
-            padding: 80px 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .studio-about {
-            padding: 96px 48px;
-          }
-        }
-        .about-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 48px;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-        @media (min-width: 768px) {
-          .about-grid {
-            grid-template-columns: 60fr 40fr;
-            gap: 80px;
-          }
-        }
-        .dark-pad {
-          padding: 64px 20px;
-        }
-        @media (min-width: 640px) {
-          .dark-pad {
-            padding: 80px 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .dark-pad {
-            padding: 96px 48px;
-          }
-        }
-        .process-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2px;
-        }
-        @media (min-width: 1024px) {
-          .process-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-        .light-pad {
-          padding: 64px 20px;
-        }
-        @media (min-width: 640px) {
-          .light-pad {
-            padding: 80px 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .light-pad {
-            padding: 96px 48px;
-          }
-        }
-      `}</style>
-      <SiteHeader />
-      <main style={{ paddingTop: 56 }}>
-
-        {/* Hero / Header Section */}
-        <section className="studio-hero">
-          <p
-            style={{
-              fontSize: 11,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-              marginBottom: 24,
-              marginTop: 0,
-              fontWeight: 400,
-            }}
-          >
-            THE STUDIO
-          </p>
-          <h1
-            style={{
-              fontWeight: 200,
-              fontSize: "clamp(36px, 5vw, 68px)",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.05,
-              color: "#FAF8F4",
-              margin: "0 0 32px",
-              whiteSpace: "pre-line",
-            }}
-          >
-            {"Ambawatta One,\nMehrauli — New Delhi"}
-          </h1>
-          <p
-            style={{
-              fontSize: 15,
-              fontWeight: 300,
-              color: "rgba(255,255,255,0.42)",
-              maxWidth: 500,
-              lineHeight: 1.8,
-              margin: 0,
-            }}
-          >
-            A private tailoring lounge where experience is centred around conversation, craft, and discovery.
-          </p>
-        </section>
-
-        {/* About Section */}
-        <section
-          ref={aboutRef as React.RefObject<HTMLElement>}
-          className={`studio-about xo-fade-in${aboutVisible ? " is-visible" : ""}`}
-        >
-          <div className="about-grid">
-            {/* Left — copy */}
-            <div>
-              <h2
-                style={{
-                  fontWeight: 300,
-                  fontSize: "clamp(22px, 3vw, 36px)",
-                  letterSpacing: "-0.01em",
-                  color: "#1C1B18",
-                  margin: "0 0 24px",
-                }}
-              >
-                About the House
-              </h2>
-              <p style={{ fontSize: 14, fontWeight: 300, color: "#4A4845", lineHeight: 1.85, marginBottom: 24, marginTop: 0 }}>
-                XO47 is a bespoke menswear tailoring house based in Ambawatta One, Mehrauli, New Delhi. Founded in 2020 by Shrey Suneja, the house was built around a singular conviction: that clothing should be experienced, not simply worn. Every garment is conceived in conversation — shaped by who you are, what you do, and how you wish to be seen.
-              </p>
-              <p style={{ fontSize: 14, fontWeight: 300, color: "#4A4845", lineHeight: 1.85, marginBottom: 24, marginTop: 0 }}>
-                The XO47 studio is a private lounge, not a shop floor. Clients are invited into a considered, unhurried process — from the first consultation through fabric selection, design, pattern, fittings, and final delivery. The result is a garment that belongs entirely to you.
-              </p>
-              <p style={{ fontSize: 14, fontWeight: 300, color: "#4A4845", lineHeight: 1.85, marginBottom: 24, marginTop: 0 }}>
-                The house works primarily in formal menswear — suits, blazers, tuxedos, and occasion wear — and has grown to serve a clientele ranging from entrepreneurs and professionals to actors, artists, and public figures. XO47 also operates a sub-brand, Santali, which explores modern Indian wear through the same lens of thoughtful construction and refined sensibility.
-              </p>
-              <p style={{ fontSize: 14, fontWeight: 300, color: "#4A4845", lineHeight: 1.85, marginBottom: 0, marginTop: 0 }}>
-                The house engages with clients across India and internationally, offering home appointments for Delhi-based clients, as well as exhibitions and pop-ups for broader access. Everything begins with a conversation — and that conversation is always the most important part.
-              </p>
+    <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
+      {/* hero */}
+      <section style={{ padding: "150px 0 0" }}>
+        <div className="wrap-wide">
+          <Reveal>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
+              <span className="over">The Studio</span>
+              <span className="over" style={{ color: "var(--muted)" }}>Mehrauli · New Delhi</span>
             </div>
-
-            {/* Right — key facts */}
-            <div>
-              <p
-                style={{
-                  fontSize: 11,
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  color: "#9A9590",
-                  marginTop: 0,
-                  marginBottom: 24,
-                  fontWeight: 400,
-                }}
-              >
-                Key Details
-              </p>
-              <dl style={{ margin: 0, padding: 0 }}>
-                {keyFacts.map((fact, i) => (
-                  <div
-                    key={fact.label}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      padding: "20px 0",
-                      borderTop: i === 0 ? "1px solid #E0DCD5" : undefined,
-                      borderBottom: "1px solid #E0DCD5",
-                    }}
-                  >
-                    <dt
-                      style={{
-                        fontSize: 11,
-                        letterSpacing: "0.15em",
-                        textTransform: "uppercase",
-                        color: "#9A9590",
-                        marginBottom: 6,
-                        fontWeight: 400,
-                      }}
-                    >
-                      {fact.label}
-                    </dt>
-                    <dd
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 300,
-                        color: "#1C1B18",
-                        margin: 0,
-                      }}
-                    >
-                      {fact.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        {/* Philosophy Section */}
-        <section
-          ref={philosophyRef as React.RefObject<HTMLElement>}
-          className={`xo-fade-in${philosophyVisible ? " is-visible" : ""}`}
-          style={{
-            backgroundColor: "#EDE8E0",
-            textAlign: "center",
-          }}
-        >
-          <div className="xo-section-pad">
-            <blockquote
-              style={{
-                fontSize: "clamp(20px, 2.5vw, 28px)",
-                fontWeight: 200,
-                fontStyle: "italic",
-                color: "#1C1B18",
-                letterSpacing: "-0.01em",
-                lineHeight: 1.5,
-                maxWidth: 700,
-                margin: "0 auto 24px",
-              }}
-            >
-              &ldquo;ITS NOT FOR YOU TO SHOW, its for you to feel.&rdquo;
-            </blockquote>
-            <p
-              style={{
-                fontSize: 11,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#9A9590",
-                margin: 0,
-                fontWeight: 400,
-              }}
-            >
-              — XO47 Brand Philosophy
+          </Reveal>
+          <Reveal delay={1}>
+            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(24px,4vw,52px) 0 clamp(20px,3vw,36px)", maxWidth: "15ch" }}>
+              A room at <span className="italic serif-accent">Ambawatta One.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="lede" style={{ maxWidth: "56ch" }}>
+              Not a shop floor, but a private lounge in Mehrauli, New Delhi &mdash; where the experience is built
+              around conversation, cloth and discovery. Entered by appointment, so the whole of the house is
+              yours for the hour.
             </p>
-          </div>
-        </section>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Process Section */}
-        <section
-          ref={processRef as React.RefObject<HTMLElement>}
-          className={`dark-pad xo-fade-in${processVisible ? " is-visible" : ""}`}
-          style={{ backgroundColor: "#1C1B18" }}
-        >
-          <p
-            style={{
-              fontSize: 11,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-              marginBottom: 16,
-              marginTop: 0,
-              fontWeight: 400,
-            }}
-          >
-            How We Work
-          </p>
-          <h2
-            style={{
-              fontSize: "clamp(28px,3vw,48px)",
-              fontWeight: 300,
-              color: "#FAF8F4",
-              letterSpacing: "-0.01em",
-              marginTop: 0,
-              marginBottom: 64,
-            }}
-          >
-            The Process
-          </h2>
-          <div className="process-grid">
-            {processSteps.map((step) => (
-              <div
-                key={step.num}
-                style={{
-                  padding: "40px 32px",
-                  borderTop: "1px solid rgba(255,255,255,0.1)",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: "0.2em",
-                    color: "#8C6A4A",
-                    marginBottom: 16,
-                    marginTop: 0,
-                    fontWeight: 400,
-                  }}
-                >
-                  {step.num}
-                </p>
-                <p
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 400,
-                    color: "#1C1B18",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    margin: 0,
-                  }}
-                >
-                  {step.name}
-                </p>
+      {/* story split */}
+      <section style={{ padding: "clamp(70px,9vw,130px) 0" }}>
+        <div className="wrap-wide studio-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}>
+          <Reveal>
+            <div className="clip">
+              <Figure src={img("look-05.jpg")} alt="Inside the XO47 studio" float style={{ aspectRatio: "4/5" }} />
+            </div>
+          </Reveal>
+          <div>
+            <Reveal>
+              <div className="eyebrow" style={{ marginBottom: 24 }}>The Space</div>
+              <h2 className="display d-1" style={{ marginBottom: 30, maxWidth: "14ch" }}>An address chosen for <span className="italic serif-accent">quiet.</span></h2>
+            </Reveal>
+            <Reveal delay={1}>
+              <p className="lede" style={{ marginBottom: 24, fontSize: "1.12rem", color: "var(--ink)" }}>
+                The atelier sits within Ambawatta One, a considered address in Mehrauli that suits a house built on
+                discretion. Inside: fabric libraries that run the length of the wall, the cutting table at the
+                centre, and the unhurried space to decide without an audience.
+              </p>
+            </Reveal>
+            <Reveal delay={2}>
+              <p className="lede" style={{ marginBottom: 24, color: "var(--ink-2)" }}>
+                It is deliberately not a storefront. There is no rail to browse, no transaction waiting at a counter.
+                A visit is a conversation &mdash; about the occasion ahead, the way you want to be read, and the cloth
+                that will carry it &mdash; held over the time it actually takes.
+              </p>
+            </Reveal>
+            <Reveal delay={3}>
+              <p className="lede" style={{ marginBottom: 0, color: "var(--ink-2)" }}>
+                Because every appointment is private, the studio is only ever attending to one client. For those who
+                would rather we came to them, the same experience travels across Delhi NCR.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* process index */}
+      <section style={{ background: "var(--dove)", padding: "clamp(80px,10vw,140px) 0" }}>
+        <div className="wrap">
+          <Reveal>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 22, marginBottom: 6 }}>
+              <span className="over">How We Work</span>
+              <span className="over" style={{ color: "var(--muted)" }}>Six movements</span>
+            </div>
+          </Reveal>
+          {PROCESS.map((s, i) => (
+            <Reveal key={s[0]} delay={((i % 2) + 1) as 1 | 2}>
+              <div style={{ display: "grid", gridTemplateColumns: "64px 1fr", gap: 24, alignItems: "start", borderBottom: "1px solid var(--line)", padding: "30px 0" }}>
+                <span className="display d-3" style={{ color: "var(--clay)" }}>{s[0]}</span>
+                <div className="studio-step" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 10 }}>
+                  <h3 className="display d-2">{s[1]}</h3>
+                  <p className="lede" style={{ fontSize: "0.95rem", color: "var(--ink-2)", margin: 0, maxWidth: "52ch" }}>{s[2]}</p>
+                </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-        {/* Founder Section */}
-        <section
-          ref={founderRef as React.RefObject<HTMLElement>}
-          className={`light-pad xo-fade-in${founderVisible ? " is-visible" : ""}`}
-          style={{
-            backgroundColor: "#FAF8F4",
-            textAlign: "center",
-          }}
-        >
-          <div style={{ maxWidth: 640, margin: "0 auto" }}>
-            <p
-              style={{
-                fontSize: 10,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#9A9590",
-                marginBottom: 16,
-                marginTop: 0,
-                fontWeight: 400,
-              }}
-            >
-              Founded By
-            </p>
-            <h2
-              style={{
-                fontSize: "clamp(28px, 4vw, 48px)",
-                fontWeight: 200,
-                letterSpacing: "-0.01em",
-                color: "#1C1B18",
-                marginTop: 0,
-                marginBottom: 32,
-                lineHeight: 1.1,
-              }}
-            >
-              Shrey Suneja
-            </h2>
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 300,
-                color: "#6B6560",
-                lineHeight: 1.85,
-                margin: "0 0 24px",
-              }}
-            >
-              Shrey Suneja founded XO47 in 2020 with the intention of building something personal — a tailoring house that prioritised the relationship between maker and wearer above all else. Having worked within the world of clothing and style, Shrey brought together his understanding of construction, fabric, and the particular requirements of the modern Indian man into a single, focused offering.
-            </p>
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 300,
-                color: "#6B6560",
-                lineHeight: 1.85,
-                margin: 0,
-              }}
-            >
-              XO47 operates out of Ambawatta One, Mehrauli — a considered address that reflects the house&apos;s values of discretion, quality, and quiet authority. Under Shrey&apos;s direction, the house has dressed some of India&apos;s most recognised figures, and continues to grow through word of mouth and genuine connection.
-            </p>
-          </div>
-        </section>
+      {/* large feature image */}
+      <section style={{ padding: "clamp(80px,10vw,140px) 0" }}>
+        <div className="wrap-wide">
+          <Reveal>
+            <div className="clip">
+              <Figure src={img("look-10.jpg")} alt="A finished XO47 commission" float style={{ aspectRatio: "16/9", maxHeight: "88vh" }} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Book CTA */}
-        <XOBookCTA />
+      {/* visit details */}
+      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "clamp(80px,10vw,140px) 0", overflow: "hidden" }}>
+        <div className="wrap-wide visit-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 50, alignItems: "start" }}>
+          <Reveal>
+            <div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 24 }}>The Visit</div>
+            <h2 className="display d-1" style={{ marginBottom: 26 }}>Come and be <span className="italic" style={{ color: "var(--amber-2)" }}>measured.</span></h2>
+            <p className="lede" style={{ color: "var(--on-dark-mut)", maxWidth: "44ch", margin: 0 }}>
+              Appointments are made by enquiry. Tell us the occasion when you write, and we will set aside the
+              right window &mdash; and have the right cloth waiting on the table.
+            </p>
+          </Reveal>
+          <Reveal delay={1}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0 }}>
+              {[
+                ["Studio", "Ambawatta One, Mehrauli, New Delhi"],
+                ["Hours", "By appointment, daily · est. " + STORY.founded],
+                ["Instagram", "@studio.xo47"],
+                ["Online", "weknowtailoring.com"],
+              ].map((r, i) => (
+                <div key={r[0]} style={{ display: "grid", gridTemplateColumns: "minmax(110px,0.45fr) 1fr", gap: 20, padding: "20px 0", borderTop: "1px solid var(--on-dark-line)", borderBottom: i === 3 ? "1px solid var(--on-dark-line)" : "none", alignItems: "baseline" }}>
+                  <span className="over" style={{ color: "var(--on-dark-mut)" }}>{r[0]}</span>
+                  <span className="display d-3" style={{ fontSize: "1.3rem" }}>{r[1]}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-      </main>
-      <SiteFooter />
-    </>
+      <CTABand />
+      <style>{`
+        @media(min-width:900px){.studio-split{grid-template-columns:0.9fr 1.1fr !important;gap:90px !important}.visit-grid{grid-template-columns:1fr 1fr !important;gap:80px !important}}
+        @media(min-width:820px){.studio-step{grid-template-columns:1fr 1.4fr !important;gap:32px !important;align-items:baseline}}
+      `}</style>
+    </div>
   );
 }

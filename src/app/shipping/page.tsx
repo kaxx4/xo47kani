@@ -1,40 +1,52 @@
-import { InfoPageLayout } from "@/components/InfoPageLayout";
+import { InfoPageLayout } from "@/components/xo/InfoPageLayout";
+
+export const metadata = {
+  title: "Delivery — Made-to-Order Commissions | XO47",
+  description:
+    "How an XO47 commission reaches you — made to order over roughly three to four weeks, hand-finished, and delivered across Delhi NCR and pan-India.",
+};
 
 export default function ShippingPage() {
   return (
     <InfoPageLayout
-      title="Shipping Information"
-      subtitle="Fast, reliable delivery across India"
+      eyebrow="Information"
+      title={
+        <>
+          When it <span className="italic serif-accent">arrives.</span>
+        </>
+      }
+      meta="Delivery"
+      intro="An XO47 garment is not pulled from a shelf and posted the same afternoon. It is made for you first — and only then does it travel, pressed and ready to wear."
       sections={[
         {
-          heading: "Standard Shipping",
+          heading: "Made before it ships",
           body: [
-            "Delivered within 5-7 business days",
-            "Free on orders above ₹5,000",
-            "₹299 for orders below ₹5,000",
+            "Because every piece is made to order, the timeline is led by the making rather than the courier. A commission is typically ready roughly three to four weeks after measurements are confirmed; more involved pieces can take longer, and we will tell you honestly when to expect it. We will be in touch as your garment is finished and prepared for delivery or final collection.",
           ],
         },
         {
-          heading: "Express Shipping",
+          heading: "Delhi NCR",
           body: [
-            "Delivered within 2-3 business days",
-            "₹599 flat rate",
-            "Available for most pin codes in India",
+            "For clients in and around the capital, the final fitting and handover are part of the experience. You are welcome to collect from the atelier at Ambawatta One, Mehrauli, or we can arrange delivery to your residence across Delhi NCR. Where a home appointment is in progress, the finished garment can be brought to you directly.",
           ],
         },
         {
-          heading: "Same Day Delivery",
+          heading: "Across India",
           body: [
-            "Available in Mumbai and Delhi NCR",
-            "Order before 12:00 noon",
-            "₹999 flat rate",
+            "We deliver pan-India through trusted, insured courier partners. Each piece is packed to protect its shape in transit, and you will receive tracking once it is dispatched. Delivery timelines beyond Delhi NCR depend on destination and are confirmed at handover.",
           ],
         },
         {
-          heading: "Order Tracking",
-          body: "Once your order ships, you will receive an email with a tracking number. You can track your shipment on our website or directly on the courier partner's website.",
+          heading: "At a glance",
+          rows: [
+            ["Making", "Approx. 3–4 weeks from confirmed measurements"],
+            ["Delhi NCR", "Atelier collection or delivery to your residence"],
+            ["Pan-India", "Insured courier, tracked, packed to hold its shape"],
+            ["International", "By arrangement — please enquire"],
+          ],
         },
       ]}
+      cta={{ label: "Book a Consultation", href: "/book-consultation" }}
     />
   );
 }

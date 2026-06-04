@@ -1,0 +1,7 @@
+# Files not needed for the Vercel build or runtime
+.claude/
+docs/
+scripts/
+Dockerfile
+docker-compose.yml
+.dockerignore

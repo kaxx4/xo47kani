@@ -2,10 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "suitsupply-clone",
+      "name": "xo47",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "runtimeArgs": ["--prefix", "C:/Users/kanis/Desktop/xo47/my-clone", "run", "dev"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

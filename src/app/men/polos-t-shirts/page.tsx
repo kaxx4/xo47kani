@@ -1,15 +1,26 @@
-import { CategoryPageLayout } from "@/components/CategoryPageLayout";
-import { getProductsByCategory, CATEGORY_META } from "@/lib/products";
+import type { Metadata } from "next";
+import { CategoryPageLayout } from "@/components/xo/CategoryPageLayout";
+import { getCategory } from "@/lib/xo-categories";
+
+const copy = getCategory("polos-t-shirts");
+
+export const metadata: Metadata = {
+  title: "Polos & T-Shirts | XO47",
+  description: copy.intro,
+};
 
 export default function PolosTShirtsPage() {
-  const meta = CATEGORY_META["polos-t-shirts"];
-  const products = getProductsByCategory("polos-t-shirts");
   return (
     <CategoryPageLayout
-      title={meta.title}
-      description={meta.description}
-      heroImage={meta.heroImage}
-      products={products}
+      eyebrow={copy.eyebrow}
+      title={
+        <>
+          Ease, <span className="italic serif-accent">made precise.</span>
+        </>
+      }
+      intro={copy.intro}
+      products={[]}
+      emptyNote="This chapter is being woven — speak with the atelier to commission a piece."
     />
   );
 }

@@ -1,78 +1,70 @@
-"use client";
-
-import { Bookmark } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import { Reveal } from "@/components/xo/Reveal";
+
+export const metadata: Metadata = {
+  title: "Saved | XO47",
+  description:
+    "Save the pieces that speak to you and bring them to your consultation. A considered wardrobe, gathered over time with the XO47 atelier.",
+};
 
 export default function WishlistPage() {
   return (
-    <>
-      <SiteHeader />
-      <main style={{ paddingTop: 56 }}>
-        {/* Page header */}
-        <div
-          style={{
-            borderBottom: "1px solid #E0DCD5",
-            padding: "24px 20px",
-          }}
-        >
+    <div
+      className="fade-page"
+      style={{
+        background: "var(--milk)",
+        color: "var(--ink)",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div
+        className="wrap"
+        style={{
+          paddingTop: 130,
+          paddingBottom: 110,
+          textAlign: "center",
+          width: "100%",
+        }}
+      >
+        <Reveal>
+          <div className="over" style={{ color: "var(--clay)", marginBottom: 30 }}>
+            Saved
+          </div>
           <h1
+            className="display"
             style={{
-              fontSize: 28,
-              fontWeight: 200,
-              color: "#1C1B18",
-              margin: 0,
-              letterSpacing: "-0.02em",
+              fontSize: "clamp(2.8rem,7vw,6rem)",
+              lineHeight: 0.96,
+              marginBottom: 28,
             }}
           >
-            Wishlist
+            A wardrobe, <span className="italic serif-accent">considered.</span>
           </h1>
-        </div>
-
-        {/* Empty state */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "80px 20px",
-            gap: 12,
-          }}
-        >
-          <Bookmark size={32} color="#9A9590" />
-          <p
+          <p className="lede" style={{ maxWidth: "48ch", margin: "0 auto 16px" }}>
+            Nothing saved so far. As you move through the collections, keep the silhouettes,
+            cloths and details that speak to you — they gather here.
+          </p>
+          <p className="lede" style={{ maxWidth: "46ch", margin: "0 auto 44px" }}>
+            Bring your selection to the studio. It becomes the opening note of your
+            consultation — the shape of a wardrobe made entirely for you.
+          </p>
+          <div
             style={{
-              fontSize: 16,
-              fontWeight: 300,
-              color: "#9A9590",
-              margin: 0,
+              display: "flex",
+              gap: 14,
+              justifyContent: "center",
+              flexWrap: "wrap",
             }}
           >
-            Your wishlist is empty
-          </p>
-          <p
-            style={{
-              fontSize: 13,
-              fontWeight: 300,
-              color: "#9A9590",
-              margin: 0,
-            }}
-          >
-            Save your favourite items to buy later
-          </p>
-          <div style={{ marginTop: 20 }}>
-            <Link
-              href="/"
-              className="xo-btn-primary"
-            >
-              Start Shopping
+            <Link className="btn" href="/collections">
+              Explore Collections
             </Link>
           </div>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
+        </Reveal>
+      </div>
+    </div>
   );
 }

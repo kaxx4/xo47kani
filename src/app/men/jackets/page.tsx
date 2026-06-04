@@ -1,15 +1,26 @@
-import { CategoryPageLayout } from "@/components/CategoryPageLayout";
-import { getProductsByCategory, CATEGORY_META } from "@/lib/products";
+import type { Metadata } from "next";
+import { CategoryPageLayout } from "@/components/xo/CategoryPageLayout";
+import { getCategory } from "@/lib/xo-categories";
+
+const copy = getCategory("jackets");
+
+export const metadata: Metadata = {
+  title: "Jackets & Blazers | XO47",
+  description: copy.intro,
+};
 
 export default function JacketsPage() {
-  const meta = CATEGORY_META["jackets"];
-  const products = getProductsByCategory("jackets");
   return (
     <CategoryPageLayout
-      title={meta.title}
-      description={meta.description}
-      heroImage={meta.heroImage}
-      products={products}
+      eyebrow={copy.eyebrow}
+      title={
+        <>
+          The art of the <span className="italic serif-accent">soft shoulder.</span>
+        </>
+      }
+      intro={copy.intro}
+      products={[]}
+      emptyNote="This chapter is being woven — speak with the atelier to commission a piece."
     />
   );
 }

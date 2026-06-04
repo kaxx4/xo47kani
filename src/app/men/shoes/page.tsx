@@ -1,13 +1,26 @@
-import { CategoryPageLayout } from "@/components/CategoryPageLayout";
-import { getProductsByCategory } from "@/lib/products";
+import type { Metadata } from "next";
+import { CategoryPageLayout } from "@/components/xo/CategoryPageLayout";
+import { getCategory } from "@/lib/xo-categories";
+
+const copy = getCategory("shoes");
+
+export const metadata: Metadata = {
+  title: "Footwear | XO47",
+  description: copy.intro,
+};
 
 export default function ShoesPage() {
-  const products = getProductsByCategory("shoes");
   return (
     <CategoryPageLayout
-      title="Shoes"
-      heroImage="/images/products/card.png"
-      products={products}
+      eyebrow={copy.eyebrow}
+      title={
+        <>
+          The <span className="italic serif-accent">last word.</span>
+        </>
+      }
+      intro={copy.intro}
+      products={[]}
+      emptyNote="This chapter is being woven — speak with the atelier to commission a piece."
     />
   );
 }
