@@ -11,7 +11,7 @@ export const metadata = {
 export default function BespokePage() {
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
@@ -20,7 +20,7 @@ export default function BespokePage() {
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(24px,4vw,52px) 0 clamp(20px,3vw,36px)", maxWidth: "15ch" }}>
+            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(18px,3vw,34px) 0 clamp(14px,2vw,26px)", maxWidth: "15ch" }}>
               One body. One <span className="italic serif-accent">pattern.</span>
             </h1>
           </Reveal>
@@ -33,7 +33,7 @@ export default function BespokePage() {
       </section>
 
       {/* feature image */}
-      <section style={{ padding: "clamp(56px,7vw,90px) 0 0" }}>
+      <section style={{ padding: "var(--sec-sm) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div className="zoom clip" style={{ aspectRatio: "16/10", background: "var(--dove)" }}>
@@ -45,7 +45,7 @@ export default function BespokePage() {
       </section>
 
       {/* process */}
-      <section style={{ padding: "clamp(80px,10vw,140px) 0" }}>
+      <section style={{ padding: "var(--sec) 0" }}>
         <div className="wrap">
           <Reveal><h2 className="eyebrow" style={{ margin: "0 0 8px" }}>The Process</h2></Reveal>
           {SERVICES.map((s, i) => (
@@ -63,7 +63,7 @@ export default function BespokePage() {
       </section>
 
       {/* fabrics */}
-      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "clamp(80px,10vw,140px) 0" }}>
+      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--sec) 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 20, marginBottom: 56 }}>

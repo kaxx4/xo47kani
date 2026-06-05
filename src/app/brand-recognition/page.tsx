@@ -13,7 +13,7 @@ export default function BrandRecognitionPage() {
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       {/* hero */}
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
@@ -22,7 +22,7 @@ export default function BrandRecognitionPage() {
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(24px,4vw,52px) 0 clamp(20px,3vw,36px)", maxWidth: "15ch" }}>
+            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(18px,3vw,34px) 0 clamp(14px,2vw,26px)", maxWidth: "15ch" }}>
               Worn for the moments that <span className="italic serif-accent">matter.</span>
             </h1>
           </Reveal>
@@ -37,7 +37,7 @@ export default function BrandRecognitionPage() {
       </section>
 
       {/* feature image */}
-      <section style={{ padding: "clamp(60px,8vw,110px) 0 0" }}>
+      <section style={{ padding: "var(--sec-sm) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div className="clip">
@@ -48,7 +48,7 @@ export default function BrandRecognitionPage() {
       </section>
 
       {/* faces grid — numbered */}
-      <section style={{ padding: "clamp(70px,9vw,120px) 0 clamp(60px,8vw,100px)" }}>
+      <section style={{ padding: "var(--sec) 0 var(--sec-sm)" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 22, marginBottom: 44 }}>
@@ -56,7 +56,7 @@ export default function BrandRecognitionPage() {
               <span className="over" style={{ color: "var(--muted)" }}>{String(FACES.length).padStart(2, "0")} names</span>
             </div>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: "20px 44px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: "20px 44px" }}>
             {FACES.map((f, i) => (
               <Reveal key={f} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 16, borderTop: "1px solid var(--ink)", paddingTop: 20 }}>
@@ -83,7 +83,7 @@ export default function BrandRecognitionPage() {
       </section>
 
       {/* presence copy */}
-      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "clamp(90px,12vw,160px) 0", overflow: "hidden" }}>
+      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--sec-lg) 0", overflow: "hidden" }}>
         <div className="wrap">
           <Reveal>
             <div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 28 }}>The XO47 Presence</div>
@@ -93,7 +93,7 @@ export default function BrandRecognitionPage() {
               Presence is the only thing that <span className="italic" style={{ color: "var(--amber-2)" }}>carries.</span>
             </h2>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(290px,1fr))", gap: 50, maxWidth: 1040 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,290px),1fr))", gap: 50, maxWidth: 1040 }}>
             <Reveal delay={1}>
               <p className="lede" style={{ color: "var(--on-dark-mut)", margin: 0 }}>
                 XO47 garments have been worn at red carpets and cultural evenings, at weddings and the milestones a

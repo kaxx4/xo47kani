@@ -55,9 +55,9 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       <div className="wrap-wide" style={{ paddingTop: 104, paddingBottom: 24 }}>
         <div className="mono" style={{ color: "var(--muted)" }}>
-          <Link href="/">XO47</Link>
+          <Link href="/" className="tap">XO47</Link>
           <span style={{ margin: "0 10px" }}>/</span>
-          <Link href={catHref(p.cat)}>{p.cat}</Link>
+          <Link href={catHref(p.cat)} className="tap">{p.cat}</Link>
           <span style={{ margin: "0 10px" }}>/</span>
           <span style={{ color: "var(--ink)" }}>{p.name}</span>
         </div>
@@ -65,7 +65,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
 
       <div
         className="wrap-wide pr-grid"
-        style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, paddingBottom: "clamp(70px,9vw,130px)" }}
+        style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, paddingBottom: "var(--sec)" }}
       >
         {/* Gallery */}
         <div>
@@ -235,7 +235,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
           className="wrap-wide pr-band"
           style={{ display: "grid", gridTemplateColumns: "1fr", alignItems: "center", gap: 40 }}
         >
-          <div style={{ padding: "clamp(60px,8vw,110px) 0" }}>
+          <div style={{ padding: "var(--sec) 0" }}>
             <Reveal>
               <div className="over" style={{ color: "rgba(247,243,235,0.6)", marginBottom: 24 }}>
                 On the Body
@@ -265,7 +265,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
       </section>
 
       {/* Complete the look */}
-      <section style={{ padding: "clamp(70px,9vw,120px) 0", background: "var(--milk)" }}>
+      <section style={{ padding: "var(--sec) 0", background: "var(--milk)" }}>
         <div className="wrap-wide">
           <Reveal>
             <div className="eyebrow" style={{ marginBottom: 14 }}>

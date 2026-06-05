@@ -62,7 +62,7 @@ export function Footer() {
                 <div className="over" style={{ color: "var(--on-dark-mut)", marginBottom: 20 }}>
                   {col.head}
                 </div>
-                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 12 }}>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 4 }}>
                   {col.links.map((l) => (
                     <li key={l}>
                       <FooterLink label={l} href={externalFor(l) ?? LINK_MAP[l] ?? routeFor(l)} external={!!externalFor(l)} />
@@ -103,8 +103,8 @@ function externalFor(label: string): string | null {
 function FooterLink({ label, href, external, mono = false }: { label: string; href: string; external: boolean; mono?: boolean }) {
   const base = mono ? "0.52" : "0.64";
   const style: React.CSSProperties = mono
-    ? { color: "var(--on-dark)", opacity: 0.52, transition: "opacity .3s,color .3s" }
-    : { fontSize: "0.86rem", color: "var(--on-dark)", opacity: 0.64, transition: "opacity .3s,color .3s" };
+    ? { display: "inline-block", padding: "5px 0", color: "var(--on-dark)", opacity: 0.52, transition: "opacity .3s,color .3s" }
+    : { display: "inline-block", padding: "6px 0", fontSize: "0.86rem", color: "var(--on-dark)", opacity: 0.64, transition: "opacity .3s,color .3s" };
   const className = mono ? "mono" : undefined;
   const onEnter = (e: React.MouseEvent<HTMLElement>) => {
     e.currentTarget.style.opacity = "1";

@@ -21,7 +21,7 @@ export default function AccountPage() {
     >
       <div
         className="wrap"
-        style={{ paddingTop: 130, paddingBottom: 110, width: "100%" }}
+        style={{ paddingTop: "var(--pad-top)", paddingBottom: "var(--sec)", width: "100%" }}
       >
         {/* Editorial header */}
         <Reveal>
@@ -183,7 +183,7 @@ export default function AccountPage() {
                 One, Mehrauli. That first meeting opens your account with us.
               </p>
               <div style={{ marginTop: "auto" }}>
-                <Link className="btn btn-on-dark" href="/book-consultation">
+                <Link className="btn btn-on-dark" href="/book-consultation" style={{ width: "100%" }}>
                   Book a Consultation
                 </Link>
               </div>

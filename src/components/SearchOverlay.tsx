@@ -133,7 +133,7 @@ export function SearchOverlay({ open, onClose }: Props) {
         .xo-page-row:last-child { border-bottom: none; }
         .xo-page-row:hover .xo-page-label { color: var(--clay); }
         .xo-chip {
-          display: inline-flex; align-items: center; height: 36px; padding: 0 18px;
+          display: inline-flex; align-items: center; height: 40px; padding: 0 18px;
           border: 1px solid var(--line); background: transparent;
           font-family: var(--ff-sans); font-weight: 400; font-size: 0.66rem; letter-spacing: 0.22em;
           text-transform: uppercase; color: var(--ink); text-decoration: none;

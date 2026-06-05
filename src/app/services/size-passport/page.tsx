@@ -13,7 +13,7 @@ export default function SizePassportPage() {
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       {/* hero */}
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
@@ -37,7 +37,7 @@ export default function SizePassportPage() {
       </section>
 
       {/* feature image */}
-      <section style={{ padding: "clamp(60px,8vw,110px) 0 0" }}>
+      <section style={{ padding: "var(--sec-sm) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div className="clip">
@@ -48,7 +48,7 @@ export default function SizePassportPage() {
       </section>
 
       {/* sections */}
-      <section style={{ padding: "clamp(70px,9vw,130px) 0 clamp(80px,10vw,140px)" }}>
+      <section style={{ padding: "var(--sec-sm) 0 var(--sec)" }}>
         <div className="wrap" style={{ maxWidth: 1000 }}>
           <Reveal>
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 18, padding: "clamp(28px,4vw,44px) 0" }}>

@@ -10,7 +10,7 @@ export function SantaliPage() {
 
   return (
     <div className="fade-page" style={{ background: "var(--forest)", color: "var(--on-dark)" }}>
-      <section style={{ padding: "150px 0 0", overflow: "hidden" }}>
+      <section style={{ padding: "var(--pad-top) 0 0", overflow: "hidden" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--on-dark-line)", paddingBottom: 18 }}>
@@ -19,14 +19,14 @@ export function SantaliPage() {
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display" style={{ fontSize: "clamp(4rem,16vw,15rem)", lineHeight: 0.84, margin: "clamp(20px,3vw,40px) 0 0" }}>
+            <h1 className="display" style={{ fontSize: "clamp(4rem,16vw,15rem)", lineHeight: 0.84, margin: "clamp(14px,2.2vw,26px) 0 0" }}>
               Santali<span className="italic" style={{ color: "var(--amber-2)" }}>.</span>
             </h1>
           </Reveal>
         </div>
       </section>
 
-      <section style={{ padding: "clamp(50px,7vw,90px) 0 clamp(80px,10vw,130px)" }}>
+      <section style={{ padding: "var(--sec-sm) 0 var(--sec)" }}>
         <div className="wrap-wide santali-pg" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "center" }}>
           <Reveal>
             <div className="fig clip" style={{ background: "var(--milk)", aspectRatio: "4/5" }}>

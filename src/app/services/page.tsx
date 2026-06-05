@@ -32,7 +32,7 @@ export default function ServicesPage() {
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       {/* hero */}
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div
@@ -72,7 +72,7 @@ export default function ServicesPage() {
       </section>
 
       {/* services index — large numbered rows */}
-      <section style={{ padding: "clamp(60px,8vw,110px) 0 clamp(80px,10vw,130px)" }}>
+      <section style={{ padding: "var(--sec-sm) 0 var(--sec)" }}>
         <div className="wrap">
           <Reveal>
             <div

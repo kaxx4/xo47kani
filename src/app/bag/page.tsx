@@ -23,8 +23,8 @@ export default function BagPage() {
       <div
         className="wrap"
         style={{
-          paddingTop: 130,
-          paddingBottom: 110,
+          paddingTop: "var(--pad-top)",
+          paddingBottom: "var(--sec)",
           textAlign: "center",
           width: "100%",
         }}

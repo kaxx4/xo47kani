@@ -260,7 +260,7 @@ export function Booking() {
   if (done) {
     return (
       <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)", minHeight: "100vh", display: "flex", alignItems: "center" }}>
-        <div className="wrap" style={{ paddingTop: 130, paddingBottom: 90, textAlign: "center", width: "100%" }}>
+        <div className="wrap" style={{ paddingTop: "var(--pad-top)", paddingBottom: 64, textAlign: "center", width: "100%" }}>
           <Reveal>
             <div className="over" style={{ color: "var(--clay)", marginBottom: 30 }}>Enquiry Received</div>
             <h1 className="display" style={{ fontSize: "clamp(2.8rem,7vw,6rem)", lineHeight: 0.96, marginBottom: 26 }}>
@@ -289,7 +289,7 @@ export function Booking() {
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)", minHeight: "100vh" }}>
       <div className="wrap-wide bk-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0, minHeight: "100vh" }}>
         {/* LEFT — context rail */}
-        <aside className="bk-rail" style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "130px 48px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <aside className="bk-rail" style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--pad-top) 48px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div>
             <div className="over" style={{ color: "var(--on-dark-mut)", marginBottom: 30 }}>Book a Consultation</div>
             <h2 className="display" style={{ fontSize: "clamp(2.4rem,3.4vw,3.6rem)", lineHeight: 1.0, marginBottom: 22 }}>
@@ -312,7 +312,7 @@ export function Booking() {
         </aside>
 
         {/* RIGHT — steps */}
-        <div className="bk-main" style={{ padding: "130px 48px 60px", display: "flex", flexDirection: "column" }}>
+        <div className="bk-main" style={{ padding: "var(--pad-top) 48px 60px", display: "flex", flexDirection: "column" }}>
           {/* progress */}
           <div style={{ display: "flex", gap: 8, marginBottom: 44 }}>
             {steps.map((_, i) => (

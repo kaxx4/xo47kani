@@ -78,6 +78,15 @@
   --maxw: 1440px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* ── Compact vertical density scale ──
+     One intentional rhythm for page-top clearance, section blocks and CTAs,
+     so content is reachable without excess scroll while keeping editorial air. */
+  --pad-top: clamp(96px, 11vw, 116px);   /* clears the fixed 76px header */
+  --sec:     clamp(46px, 6vw, 90px);      /* standard section block */
+  --sec-lg:  clamp(56px, 7.5vw, 110px);   /* feature / emphasis section */
+  --sec-sm:  clamp(36px, 5vw, 66px);      /* tight section */
+  --cta:     clamp(64px, 9vw, 128px);     /* full-bleed CTA band */
+
   /* ── shadcn / Tailwind compatibility tokens — aligned to XO palette ── */
   --background: #FFFFFF;
   --foreground: #14110E;
@@ -204,7 +213,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .hdr-inner { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 .hdr.solid { background: rgba(247,243,235,0.9); backdrop-filter: blur(20px) saturate(1.1); -webkit-backdrop-filter: blur(20px) saturate(1.1); border-bottom-color: var(--line-soft); }
 .hdr.solid.on-dark-hdr { background: rgba(20,18,15,0.82); border-bottom-color: var(--on-dark-line); }
-.wordmark { font-family: var(--ff-sans); font-weight: 500; font-size: 1.18rem; letter-spacing: 0.46em; text-transform: uppercase; }
+.wordmark { font-family: var(--ff-sans); font-weight: 500; font-size: 1.18rem; letter-spacing: 0.46em; text-transform: uppercase; display: inline-flex; align-items: center; min-height: 44px; }
 .nav-link { font-family: var(--ff-sans); font-weight: 400; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: .82; transition: opacity .3s; }
 .nav-link:hover, .nav-link.active { opacity: 1; }
 
@@ -230,13 +239,13 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   display: flex; align-items: stretch; background: rgba(20,18,15,0.92); backdrop-filter: blur(16px);
   border: 1px solid rgba(242,236,224,0.16); border-radius: 100px; padding: 5px; box-shadow: 0 24px 60px -22px rgba(0,0,0,0.65); }
 .switcher button { font-family: var(--ff-sans); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(242,236,224,0.58); padding: 11px 22px; border-radius: 100px; transition: color .4s, background .4s; white-space: nowrap; }
+  color: rgba(242,236,224,0.58); padding: 13px 22px; border-radius: 100px; transition: color .4s, background .4s; white-space: nowrap; }
 .switcher button:hover { color: rgba(242,236,224,0.95); }
 .switcher button.on { background: var(--milk); color: var(--ink); }
 @media (max-width: 620px) {
   .switcher { left: 10px; right: 10px; transform: none; justify-content: center; max-width: calc(100vw - 20px); }
   .switcher .mono { display: none !important; }
-  .switcher button { padding: 10px 12px; font-size: 0.56rem; letter-spacing: 0.06em; }
+  .switcher button { padding: 13px 12px; font-size: 0.56rem; letter-spacing: 0.06em; }
 }
 
 /* ---- Marquee ---- */
@@ -316,9 +325,18 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .press { transition: transform .16s var(--ease); }
 .press:active { transform: scale(0.96); }
 
+/* Extend the touch hit-area of a small inline control to ~44px without
+   changing its visual size (pseudo-element only expands vertically, so
+   horizontally-spaced siblings never overlap). */
+.tap { position: relative; }
+.tap::before { content: ""; position: absolute; inset: -11px 0; }
+
 /* Touch press feedback for primary buttons (desktop uses the magnetic engine,
    which sets an inline transform that overrides this; touch has no magnet). */
 .btn:active { transform: scale(0.97); }
+
+/* Tighter side padding on phones so long-label buttons fit narrow panels */
+@media (max-width: 420px) { .btn { padding-left: 24px; padding-right: 24px; } }
 
 /* Tabular figures for prices & metadata so columns never jitter or misalign */
 .tnum { font-variant-numeric: tabular-nums; }

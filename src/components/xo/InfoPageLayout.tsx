@@ -25,7 +25,7 @@ export function InfoPageLayout({ eyebrow, title, meta, intro, sections, cta }: I
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       {/* hero */}
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div
@@ -47,7 +47,7 @@ export function InfoPageLayout({ eyebrow, title, meta, intro, sections, cta }: I
               style={{
                 fontSize: "clamp(3rem,9vw,9rem)",
                 lineHeight: 0.9,
-                margin: "clamp(24px,4vw,52px) 0 clamp(20px,3vw,36px)",
+                margin: "clamp(16px,3vw,34px) 0 clamp(14px,2vw,26px)",
                 maxWidth: "16ch",
               }}
             >
@@ -65,7 +65,7 @@ export function InfoPageLayout({ eyebrow, title, meta, intro, sections, cta }: I
       </section>
 
       {/* body */}
-      <section style={{ padding: "clamp(60px,8vw,110px) 0 clamp(80px,10vw,140px)" }}>
+      <section style={{ padding: "var(--sec-sm) 0 var(--sec)" }}>
         <div className="wrap" style={{ maxWidth: 980 }}>
           {sections.map((s, i) => (
             <Reveal key={i} delay={1}>
@@ -74,7 +74,7 @@ export function InfoPageLayout({ eyebrow, title, meta, intro, sections, cta }: I
                   display: "grid",
                   gridTemplateColumns: "1fr",
                   gap: 18,
-                  padding: "clamp(28px,4vw,44px) 0",
+                  padding: "clamp(20px,2.6vw,34px) 0",
                   borderTop: i === 0 ? "none" : "1px solid var(--line)",
                 }}
               >

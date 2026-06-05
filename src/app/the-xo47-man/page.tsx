@@ -31,7 +31,7 @@ export default function TheXo47ManPage() {
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       {/* hero */}
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
@@ -40,7 +40,7 @@ export default function TheXo47ManPage() {
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(24px,4vw,52px) 0 clamp(28px,4vw,48px)", maxWidth: "16ch" }}>
+            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(18px,3vw,34px) 0 clamp(18px,3vw,30px)", maxWidth: "16ch" }}>
               The XO47 <span className="italic serif-accent">man.</span>
             </h1>
           </Reveal>
@@ -53,7 +53,7 @@ export default function TheXo47ManPage() {
       </section>
 
       {/* manifesto split */}
-      <section style={{ padding: "clamp(70px,9vw,130px) 0" }}>
+      <section style={{ padding: "var(--sec) 0" }}>
         <div className="wrap-wide man-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}>
           <Reveal>
             <div className="clip">
@@ -90,7 +90,7 @@ export default function TheXo47ManPage() {
       </section>
 
       {/* archetypes */}
-      <section style={{ background: "var(--dove)", padding: "clamp(80px,10vw,140px) 0" }}>
+      <section style={{ background: "var(--dove)", padding: "var(--sec) 0" }}>
         <div className="wrap">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 22, marginBottom: 6 }}>
@@ -113,7 +113,7 @@ export default function TheXo47ManPage() {
       </section>
 
       {/* faces tie-in */}
-      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "clamp(80px,10vw,140px) 0", overflow: "hidden" }}>
+      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--sec) 0", overflow: "hidden" }}>
         <div className="wrap-wide">
           <Reveal>
             <div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 24 }}>In Good Company</div>

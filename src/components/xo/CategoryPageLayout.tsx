@@ -34,7 +34,7 @@ export function CategoryPageLayout({
 
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div
@@ -53,7 +53,7 @@ export function CategoryPageLayout({
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display d-mega" style={{ margin: "clamp(20px,3vw,44px) 0 clamp(26px,3vw,48px)" }}>
+            <h1 className="display d-mega" style={{ margin: "clamp(16px,2.4vw,32px) 0 clamp(16px,2.4vw,30px)" }}>
               {title}
             </h1>
           </Reveal>
@@ -83,7 +83,7 @@ export function CategoryPageLayout({
                     type="button"
                     onClick={() => setCat(c)}
                     aria-pressed={cat === c}
-                    className={`ulink press${cat === c ? " ulink--active" : ""}`}
+                    className={`ulink press tap${cat === c ? " ulink--active" : ""}`}
                     style={{ opacity: cat === c ? 1 : 0.5, color: cat === c ? "var(--clay)" : "var(--ink)" }}
                   >
                     {c}
@@ -100,7 +100,7 @@ export function CategoryPageLayout({
         </div>
       </section>
 
-      <section style={{ padding: "60px 0 clamp(90px,12vw,170px)" }}>
+      <section style={{ padding: "40px 0 var(--sec-lg)" }}>
         <div className="wrap-wide">
           {list.length === 0 ? (
             <Reveal>
@@ -109,7 +109,7 @@ export function CategoryPageLayout({
               </p>
             </Reveal>
           ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: "72px 40px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: "72px 40px" }}>
               {list.map((p, i) => (
                 <Reveal key={p.slug} delay={((i % 3) + 1) as 1 | 2 | 3}>
                   <ProductCard product={p} index={i} />

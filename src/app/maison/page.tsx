@@ -13,7 +13,7 @@ export default function MaisonPage() {
   return (
     <div className="fade-page" style={{ background: "var(--milk)", color: "var(--ink)" }}>
       {/* hero */}
-      <section style={{ padding: "150px 0 0" }}>
+      <section style={{ padding: "var(--pad-top) 0 0" }}>
         <div className="wrap-wide">
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 18 }}>
@@ -22,7 +22,7 @@ export default function MaisonPage() {
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(24px,4vw,52px) 0 clamp(28px,4vw,48px)", maxWidth: "16ch" }}>
+            <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(18px,3vw,34px) 0 clamp(18px,3vw,30px)", maxWidth: "16ch" }}>
               A house built to be <span className="italic serif-accent">felt.</span>
             </h1>
           </Reveal>
@@ -33,7 +33,7 @@ export default function MaisonPage() {
       </section>
 
       {/* story split */}
-      <section style={{ padding: "clamp(70px,9vw,130px) 0" }}>
+      <section style={{ padding: "var(--sec) 0" }}>
         <div className="wrap-wide maison-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}>
           <Reveal>
             <div className="clip" data-parallax="0.05">
@@ -57,7 +57,7 @@ export default function MaisonPage() {
       </section>
 
       {/* pillars */}
-      <section style={{ background: "var(--dove)", padding: "clamp(80px,10vw,140px) 0" }}>
+      <section style={{ background: "var(--dove)", padding: "var(--sec) 0" }}>
         <div className="wrap-wide">
           <Reveal><h2 className="eyebrow" style={{ margin: "0 0 50px" }}>What we stand on</h2></Reveal>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "50px 44px" }}>
@@ -75,7 +75,7 @@ export default function MaisonPage() {
       </section>
 
       {/* milestones */}
-      <section style={{ padding: "clamp(80px,10vw,140px) 0" }}>
+      <section style={{ padding: "var(--sec) 0" }}>
         <div className="wrap-wide">
           <Reveal><h2 className="display d-1" style={{ marginBottom: 56 }}>The <span className="italic serif-accent">timeline.</span></h2></Reveal>
           {STORY.milestones.map((m, i) => (
@@ -90,7 +90,7 @@ export default function MaisonPage() {
       </section>
 
       {/* recognition mini */}
-      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "clamp(80px,10vw,130px) 0", overflow: "hidden" }}>
+      <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--sec) 0", overflow: "hidden" }}>
         <div className="wrap-wide">
           <Reveal><div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 24 }}>Brand Recognition</div>
             <h2 className="display d-1" style={{ marginBottom: 44 }}>Worn for the moments<br />that <span className="italic" style={{ color: "var(--amber-2)" }}>matter.</span></h2></Reveal>
