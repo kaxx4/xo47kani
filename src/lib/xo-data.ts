@@ -153,9 +153,9 @@ export const FOOTER: FooterCol[] = [
 export const STORY: Story = {
   founded: "2020",
   place: "New Delhi",
-  lede: "XO47 began with a single conviction — that clothing is not worn to be seen, but to be felt.",
+  lede: "We started XO47 in 2020 with one simple idea — a suit should be about how it feels to wear, not how it looks to everyone else.",
   body: [
-    "Founded in New Delhi in 2020 under the 1 OAK group, XO47 is a bespoke menswear house built on the philosophy of presence and identity. We do not chase trends; we read the man, the occasion and the intent — then draft a garment for one body, and one only.",
+    "We're a bespoke menswear house in New Delhi, founded in 2020 under the 1 OAK group. We don't chase trends — we listen to you, to the occasion, to what you actually need — then cut a suit for one person. Just you.",
     "Every commission begins with a conversation. From the selection of cloth — woven at mills refined over generations — to the precision of a single hand-set buttonhole, each decision is deliberate. We say it is handcrafted, and really, it is.",
     "The result is one of a kind. A wardrobe that does not announce itself, but holds the room the moment you walk in.",
   ],

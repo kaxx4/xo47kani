@@ -5,6 +5,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { useSearchParams } from "next/navigation";
 import { Reveal } from "@/components/xo/Reveal";
 import { BOOKING } from "@/lib/xo-data";
+import { addConsultation } from "@/lib/admin/store";
 
 /* XO47 — Book a Consultation · multi-step enquiry flow.
    Faithful port of booking.jsx. */
@@ -242,7 +243,24 @@ export function Booking() {
   };
 
   const submit = () => {
-    setRef("XO-" + Math.random().toString(36).slice(2, 7).toUpperCase());
+    const theRef = "XO-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+    setRef(theRef);
+    try {
+      addConsultation({
+        ref: theRef,
+        service: f.service,
+        occasion: f.occasion,
+        timeline: f.timeline,
+        notes: f.notes,
+        appt: f.appt,
+        date: f.date,
+        time: f.time,
+        name: f.name,
+        email: f.email,
+        phone: f.phone,
+        city: f.city,
+      });
+    } catch {}
     setDone(true);
   };
   const next = () => {
@@ -304,7 +322,7 @@ export function Booking() {
           <ol style={{ listStyle: "none", margin: "40px 0 0", padding: 0, display: "grid", gap: 14 }}>
             {steps.map((s, i) => (
               <li key={i} style={{ display: "flex", alignItems: "center", gap: 16, opacity: i === step ? 1 : i < step ? 0.5 : 0.32, transition: "opacity .4s" }}>
-                <span className="mono" style={{ color: i <= step ? "var(--amber-2)" : "var(--on-dark)", width: 22 }}>{i < step ? "✓" : String(i + 1).padStart(2, "0")}</span>
+                <span className="mono tnum" style={{ color: i <= step ? "var(--amber-2)" : "var(--on-dark)", width: 22, textAlign: "center" }}>{i < step ? "✓" : String(i + 1).padStart(2, "0")}</span>
                 <span className="display d-3" style={{ fontSize: "1.4rem" }}>{s}</span>
               </li>
             ))}
@@ -416,13 +434,13 @@ export function Booking() {
         </div>
       </div>
       <style>{`
-        @media(min-width:940px){
+        @media(min-width:860px){
           .bk-grid{grid-template-columns:0.85fr 1.15fr !important;background:linear-gradient(to right,var(--ink) 0 42.5%,var(--milk) 42.5%)}
           .bk-rail{position:sticky;top:0;height:100vh}
           .bk-when{grid-template-columns:1fr 1.2fr !important}
           .bk-you{grid-template-columns:1fr 1fr !important}
         }
-        @media(max-width:939px){.bk-rail{padding:110px 22px 40px !important}.bk-main{padding:48px 22px 50px !important}}
+        @media(max-width:859px){.bk-rail{padding:104px 22px 36px !important}.bk-main{padding:44px 22px 48px !important}}
         .bk-choice:hover[data-on="0"]{border-color:var(--ink) !important}
       `}</style>
     </div>

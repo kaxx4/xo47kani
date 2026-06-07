@@ -234,20 +234,6 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .xo-menu-link:hover { color: var(--amber-2); }
 .xo-menu-foot { color: var(--on-dark-mut); padding-bottom: 30px; flex: 0 0 auto; }
 
-/* ---- Direction switcher ---- */
-.switcher { position: fixed; z-index: 90; left: 50%; bottom: 26px; transform: translateX(-50%);
-  display: flex; align-items: stretch; background: rgba(20,18,15,0.92); backdrop-filter: blur(16px);
-  border: 1px solid rgba(242,236,224,0.16); border-radius: 100px; padding: 5px; box-shadow: 0 24px 60px -22px rgba(0,0,0,0.65); }
-.switcher button { font-family: var(--ff-sans); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(242,236,224,0.58); padding: 13px 22px; border-radius: 100px; transition: color .4s, background .4s; white-space: nowrap; }
-.switcher button:hover { color: rgba(242,236,224,0.95); }
-.switcher button.on { background: var(--milk); color: var(--ink); }
-@media (max-width: 620px) {
-  .switcher { left: 10px; right: 10px; transform: none; justify-content: center; max-width: calc(100vw - 20px); }
-  .switcher .mono { display: none !important; }
-  .switcher button { padding: 13px 12px; font-size: 0.56rem; letter-spacing: 0.06em; }
-}
-
 /* ---- Marquee ---- */
 .marq { overflow: hidden; white-space: nowrap; }
 .marq-row { display: inline-block; }
@@ -280,7 +266,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 /* Scroll progress — driven by transform (compositor-only, no per-frame layout) */
 #xo-progress { position: fixed; top: 0; left: 0; height: 2px; width: 100%; z-index: 200;
   background: linear-gradient(90deg, var(--clay), var(--amber-2)); pointer-events: none;
-  transform: scaleX(0); transform-origin: left; transition: transform .12s linear; }
+  transform: scaleX(0); transform-origin: left; transition: transform .12s linear; will-change: transform; }
 
 /* Word-rise for hero display lines — transform-only (opacity stays 1, never traps) */
 .rise { display: inline-block; animation: riseUp 1.15s cubic-bezier(0.16,1,0.3,1) backwards; }
@@ -318,8 +304,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .hdr.on-dark-hdr :focus-visible,
 .foot :focus-visible,
 .xo-menu :focus-visible,
-.bk-rail :focus-visible,
-.switcher :focus-visible { outline-color: var(--amber-2); }
+.bk-rail :focus-visible { outline-color: var(--amber-2); }
 
 /* Tactile press for non-magnetic controls (.btn is handled below) */
 .press { transition: transform .16s var(--ease); }
@@ -350,7 +335,8 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
   html { scroll-behavior: auto; }
   .tick-track, .marq > * { animation: none !important; }
   .clip img, .zoom img, .fig img { transition: none !important; }
-  .xo-menu, .xo-menu-link { transition-property: opacity, visibility !important; transform: none !important; }
+  .xo-menu, .xo-menu-link { transition-property: opacity, visibility !important; transform: none !important; transition-delay: 0s !important; }
+  .press:active, .btn:active { transform: none !important; }
 }
 
 @layer base {

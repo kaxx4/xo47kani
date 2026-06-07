@@ -27,7 +27,7 @@ export function SantaliPage() {
       </section>
 
       <section style={{ padding: "var(--sec-sm) 0 var(--sec)" }}>
-        <div className="wrap-wide santali-pg" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "center" }}>
+        <div className="wrap-wide santali-pg" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(34px,4.5vw,56px)", alignItems: "center" }}>
           <Reveal>
             <div className="fig clip" style={{ background: "var(--milk)", aspectRatio: "4/5" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -54,7 +54,7 @@ export function SantaliPage() {
           </div>
         </div>
       </section>
-      <style>{`@media(min-width:900px){.santali-pg{grid-template-columns:0.9fr 1.1fr !important;gap:80px !important}}`}</style>
+      <style>{`@media(min-width:768px){.santali-pg{grid-template-columns:0.9fr 1.1fr !important;gap:clamp(44px,5.5vw,80px) !important}}`}</style>
     </div>
   );
 }

@@ -109,7 +109,7 @@ export function CategoryPageLayout({
               </p>
             </Reveal>
           ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: "72px 40px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: "clamp(42px,5vw,72px) 40px" }}>
               {list.map((p, i) => (
                 <Reveal key={p.slug} delay={((i % 3) + 1) as 1 | 2 | 3}>
                   <ProductCard product={p} index={i} />

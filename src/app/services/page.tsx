@@ -103,7 +103,7 @@ export default function ServicesPage() {
                   padding: "32px 0",
                 }}
               >
-                <span className="display d-3" style={{ color: "var(--clay)" }}>{s[0]}</span>
+                <span className="display d-3 tnum" style={{ color: "var(--clay)" }}>{s[0]}</span>
                 <div className="svc-inner" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
                   <h2 className="display d-2">{s[1]}</h2>
                   <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -118,7 +118,7 @@ export default function ServicesPage() {
       </section>
 
       <CTABand />
-      <style>{`@media(min-width:820px){.svc-inner{grid-template-columns:1fr 1.4fr !important;gap:36px !important;align-items:baseline}}`}</style>
+      <style>{`@media(min-width:768px){.svc-inner{grid-template-columns:1fr 1.4fr !important;gap:36px !important;align-items:baseline}}`}</style>
     </div>
   );
 }

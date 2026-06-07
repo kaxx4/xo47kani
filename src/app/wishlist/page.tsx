@@ -15,7 +15,7 @@ export default function WishlistPage() {
       style={{
         background: "var(--milk)",
         color: "var(--ink)",
-        minHeight: "100vh",
+        minHeight: "64vh",
         display: "flex",
         alignItems: "center",
       }}

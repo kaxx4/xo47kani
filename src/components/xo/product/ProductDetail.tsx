@@ -65,7 +65,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
 
       <div
         className="wrap-wide pr-grid"
-        style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, paddingBottom: "var(--sec)" }}
+        style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(32px,4vw,56px)", paddingBottom: "var(--sec)" }}
       >
         {/* Gallery */}
         <div>
@@ -136,9 +136,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
                       outlineOffset: 3,
                       transition: "outline-offset .25s var(--ease), transform .16s var(--ease)",
                     }}
-                    onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.96)")}
-                    onMouseUp={(e) => (e.currentTarget.style.transform = "")}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
+                    className="press"
                   />
                 ))}
               </div>
@@ -233,7 +231,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
       <section style={{ background: "var(--clay)", color: "var(--milk)", overflow: "hidden" }}>
         <div
           className="wrap-wide pr-band"
-          style={{ display: "grid", gridTemplateColumns: "1fr", alignItems: "center", gap: 40 }}
+          style={{ display: "grid", gridTemplateColumns: "1fr", alignItems: "center", gap: "clamp(28px,4vw,40px)" }}
         >
           <div style={{ padding: "var(--sec) 0" }}>
             <Reveal>
@@ -261,7 +259,7 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
             />
           </Reveal>
         </div>
-        <style>{`@media(min-width:880px){.pr-band{grid-template-columns:1.05fr 0.8fr !important;gap:60px !important}}`}</style>
+        <style>{`@media(min-width:768px){.pr-band{grid-template-columns:1.05fr 0.8fr !important;gap:clamp(40px,5vw,60px) !important}}`}</style>
       </section>
 
       {/* Complete the look */}
@@ -271,20 +269,20 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
             <div className="eyebrow" style={{ marginBottom: 14 }}>
               Complete the Commission
             </div>
-            <h2 className="display d-1" style={{ marginBottom: 56 }}>
+            <h2 className="display d-1" style={{ marginBottom: "clamp(32px,4.5vw,56px)" }}>
               Worn <span className="italic serif-accent">with.</span>
             </h2>
           </Reveal>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))",
-              gap: "50px 34px",
+              gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,240px),1fr))",
+              gap: "clamp(34px,4.5vw,50px) 34px",
             }}
           >
             {related.map((rp, i) => (
               <Reveal key={rp.slug} delay={((i % 4) + 1) as 1 | 2 | 3 | 4}>
-                <Link href={`/product/${rp.slug}`} style={{ display: "block" }}>
+                <Link href={`/product/${rp.slug}`} className="press" style={{ display: "block" }}>
                   <div className="zoom" style={{ position: "relative" }}>
                     <Figure src={rp.img} alt={rp.name} float style={{ aspectRatio: "4/5" }} />
                   </div>
@@ -315,8 +313,8 @@ export function ProductDetail({ product, detail: p, related }: ProductDetailProp
       </section>
 
       <style>{`
-        @media(min-width:920px){
-          .pr-grid{grid-template-columns:1.1fr 0.9fr !important;gap:70px !important}
+        @media(min-width:768px){
+          .pr-grid{grid-template-columns:1.1fr 0.9fr !important;gap:clamp(40px,5vw,70px) !important}
           .pr-info{position:sticky;top:96px;align-self:start}
         }
       `}</style>

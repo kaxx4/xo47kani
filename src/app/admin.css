@@ -1,0 +1,180 @@
+/* XO47 — Admin styling contract.
+   Section authors USE these classes; do NOT redefine them.
+   border-radius is 0 everywhere (brand rule). */
+
+.adm-input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  font-family: var(--ff-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.25s;
+}
+.adm-input:focus {
+  border-color: var(--ink);
+}
+
+.adm-label {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.adm-card {
+  border: 1px solid var(--line);
+  background: var(--milk);
+  padding: clamp(16px, 2vw, 24px);
+}
+
+.adm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 18px;
+  background: var(--ink);
+  color: var(--milk);
+  border: 1px solid var(--ink);
+  font-family: var(--ff-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.16s;
+}
+.adm-btn:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+}
+.adm-btn:active {
+  transform: scale(0.97);
+}
+.adm-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.adm-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 18px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-family: var(--ff-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.16s;
+}
+.adm-btn-ghost:hover {
+  border-color: var(--ink);
+  background: transparent;
+}
+.adm-btn-ghost:active {
+  transform: scale(0.97);
+}
+.adm-btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.adm-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 18px;
+  background: transparent;
+  color: var(--clay);
+  border: 1px solid var(--clay);
+  font-family: var(--ff-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.16s;
+}
+.adm-btn-danger:hover {
+  background: var(--clay);
+  color: var(--milk);
+}
+.adm-btn-danger:active {
+  transform: scale(0.97);
+}
+.adm-btn-danger:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.adm-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-family: var(--ff-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.adm-chip[data-tone="new"] {
+  color: var(--amber-2);
+  border-color: var(--amber-2);
+}
+.adm-chip[data-tone="contacted"] {
+  color: var(--forest);
+  border-color: var(--forest);
+}
+.adm-chip[data-tone="booked"] {
+  color: var(--clay);
+  border-color: var(--clay);
+}
+.adm-chip[data-tone="archived"] {
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.adm-tr {
+  display: grid;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.adm-th {
+  font-family: var(--ff-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.adm-empty {
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  padding: 60px 0;
+}
+
+.adm-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--dove);
+  display: block;
+}

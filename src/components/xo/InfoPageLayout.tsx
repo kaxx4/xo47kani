@@ -133,7 +133,7 @@ export function InfoPageLayout({ eyebrow, title, meta, intro, sections, cta }: I
 
           {cta && (
             <Reveal delay={1}>
-              <div style={{ marginTop: 56 }}>
+              <div style={{ marginTop: "clamp(34px,4.5vw,56px)" }}>
                 <Link className="btn" href={cta.href}>
                   {cta.label}
                 </Link>

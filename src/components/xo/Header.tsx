@@ -134,7 +134,7 @@ export function Header() {
               className="xo-menu-link"
               style={{ transitionDelay: menu ? `${0.08 + i * 0.06}s` : "0s" }}
             >
-              <span className="mono" style={{ color: "var(--clay)" }}>
+              <span className="mono tnum" style={{ color: "var(--clay)" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="display">{m[0]}</span>

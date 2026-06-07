@@ -51,7 +51,7 @@ export default function BespokePage() {
           {SERVICES.map((s, i) => (
             <Reveal key={i} delay={1}>
               <div className="bsp-row" style={{ display: "grid", gridTemplateColumns: "70px 1fr", gap: 26, alignItems: "start", borderTop: "1px solid var(--line)", padding: "32px 0" }}>
-                <span className="display d-2" style={{ color: "var(--clay)" }}>{s[0]}</span>
+                <span className="display d-2 tnum" style={{ color: "var(--clay)" }}>{s[0]}</span>
                 <div className="bsp-inner" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 10 }}>
                   <h3 className="display d-2">{s[1]}</h3>
                   <p className="lede" style={{ fontSize: "0.98rem", margin: 0, maxWidth: "52ch" }}>{s[2]}</p>
@@ -71,7 +71,7 @@ export default function BespokePage() {
               <p className="lede" style={{ color: "var(--on-dark-mut)", maxWidth: "40ch", margin: 0 }}>Sourced from mills refined over generations. We help you choose for hand, weight and the way light moves across it.</p>
             </div>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "12px 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))", gap: "12px 40px" }}>
             {FABRICS.map((f, i) => (
               <Reveal key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "baseline", borderTop: "1px solid var(--on-dark-line)", padding: "22px 0" }}>
@@ -88,7 +88,7 @@ export default function BespokePage() {
       </section>
 
       <CTABand />
-      <style>{`@media(min-width:820px){.bsp-inner{grid-template-columns:1fr 1.3fr !important;gap:36px !important;align-items:baseline}}`}</style>
+      <style>{`@media(min-width:768px){.bsp-inner{grid-template-columns:1fr 1.3fr !important;gap:36px !important;align-items:baseline}}`}</style>
     </div>
   );
 }

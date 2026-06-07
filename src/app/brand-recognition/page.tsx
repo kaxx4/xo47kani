@@ -23,7 +23,7 @@ export default function BrandRecognitionPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(18px,3vw,34px) 0 clamp(14px,2vw,26px)", maxWidth: "15ch" }}>
-              Worn for the moments that <span className="italic serif-accent">matter.</span>
+              Worn where presence is <span className="italic serif-accent">everything.</span>
             </h1>
           </Reveal>
           <Reveal delay={2}>
@@ -41,7 +41,7 @@ export default function BrandRecognitionPage() {
         <div className="wrap-wide">
           <Reveal>
             <div className="clip">
-              <Figure src={img("look-02.jpg")} alt="A black tuxedo by XO47" float style={{ aspectRatio: "16/10", maxHeight: "84vh" }} />
+              <Figure src={img("look-02.jpg")} alt="A black tuxedo by XO47" float style={{ aspectRatio: "16/10", maxHeight: "72vh" }} />
             </div>
           </Reveal>
         </div>
@@ -53,14 +53,14 @@ export default function BrandRecognitionPage() {
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--ink)", paddingBottom: 22, marginBottom: 44 }}>
               <span className="over">As Worn By</span>
-              <span className="over" style={{ color: "var(--muted)" }}>{String(FACES.length).padStart(2, "0")} names</span>
+              <span className="over tnum" style={{ color: "var(--muted)" }}>{String(FACES.length).padStart(2, "0")} names</span>
             </div>
           </Reveal>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: "20px 44px" }}>
             {FACES.map((f, i) => (
               <Reveal key={f} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 16, borderTop: "1px solid var(--ink)", paddingTop: 20 }}>
-                  <span className="mono" style={{ color: "var(--clay)" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mono tnum" style={{ color: "var(--clay)" }}>{String(i + 1).padStart(2, "0")}</span>
                   <span className="display d-2">{f}</span>
                 </div>
               </Reveal>

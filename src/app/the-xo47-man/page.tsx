@@ -54,7 +54,7 @@ export default function TheXo47ManPage() {
 
       {/* manifesto split */}
       <section style={{ padding: "var(--sec) 0" }}>
-        <div className="wrap-wide man-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}>
+        <div className="wrap-wide man-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(34px,4.5vw,56px)", alignItems: "start" }}>
           <Reveal>
             <div className="clip">
               <Figure src={img("look-10.jpg")} alt="The XO47 man" float style={{ aspectRatio: "4/5" }} />
@@ -63,13 +63,13 @@ export default function TheXo47ManPage() {
           <div>
             <Reveal>
               <div className="eyebrow" style={{ marginBottom: 24 }}>Presence &amp; Identity</div>
-              <h2 className="display d-1" style={{ marginBottom: 30, maxWidth: "13ch" }}>Worn to be <span className="italic serif-accent">felt.</span></h2>
+              <h2 className="display d-1" style={{ marginBottom: 30, maxWidth: "13ch" }}>He dresses for <span className="italic serif-accent">himself.</span></h2>
             </Reveal>
             <Reveal delay={1}>
               <p className="lede" style={{ marginBottom: 24, fontSize: "1.12rem", color: "var(--ink)" }}>
-                The house was built on a single conviction &mdash; that clothing is not worn to be seen, but to be
-                felt. The XO47 man understands the difference. He does not dress to be looked at; he dresses to
-                hold the room the moment he enters it.
+                We built the house on a simple idea &mdash; that a suit is about how it feels to wear, not how it
+                looks to everyone else. The men we dress understand that. They don&apos;t dress to be looked at;
+                they dress to feel like themselves.
               </p>
             </Reveal>
             <Reveal delay={2}>
@@ -81,7 +81,7 @@ export default function TheXo47ManPage() {
             </Reveal>
             <Reveal delay={3}>
               <p className="display d-2 italic" style={{ color: "var(--clay)", margin: "12px 0 14px" }}>
-                &ldquo;It is not for you to show &mdash; it is for you to feel.&rdquo;
+                &ldquo;I&apos;ve never made a suit to be looked at &mdash; I make it for how it feels to wear.&rdquo;
               </p>
               <div className="mono" style={{ color: "var(--muted)" }}>&mdash; Shrey Suneja, Founder</div>
             </Reveal>
@@ -101,7 +101,7 @@ export default function TheXo47ManPage() {
           {ARCHETYPES.map((a, i) => (
             <Reveal key={a[0]} delay={((i % 2) + 1) as 1 | 2}>
               <div style={{ display: "grid", gridTemplateColumns: "64px 1fr", gap: 24, alignItems: "start", borderBottom: "1px solid var(--line)", padding: "34px 0" }}>
-                <span className="display d-3" style={{ color: "var(--clay)" }}>{a[0]}</span>
+                <span className="display d-3 tnum" style={{ color: "var(--clay)" }}>{a[0]}</span>
                 <div className="man-arch" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
                   <h3 className="display d-2">{a[1]}</h3>
                   <p className="lede" style={{ fontSize: "0.98rem", color: "var(--ink-2)", margin: 0, maxWidth: "56ch" }}>{a[2]}</p>
@@ -130,7 +130,7 @@ export default function TheXo47ManPage() {
             {FACES.map((f, i) => (
               <Reveal key={f} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div style={{ display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid var(--on-dark-line)", paddingTop: 14 }}>
-                  <span className="mono" style={{ color: "var(--amber-2)" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mono tnum" style={{ color: "var(--amber-2)" }}>{String(i + 1).padStart(2, "0")}</span>
                   <span className="display d-3">{f}</span>
                 </div>
               </Reveal>
@@ -141,8 +141,8 @@ export default function TheXo47ManPage() {
 
       <CTABand />
       <style>{`
-        @media(min-width:900px){.man-split{grid-template-columns:0.9fr 1.1fr !important;gap:90px !important}}
-        @media(min-width:820px){.man-arch{grid-template-columns:1fr 1.5fr !important;gap:32px !important;align-items:baseline}}
+        @media(min-width:768px){.man-split{grid-template-columns:0.9fr 1.1fr !important;gap:clamp(48px,6vw,90px) !important}}
+        @media(min-width:768px){.man-arch{grid-template-columns:1fr 1.5fr !important;gap:32px !important;align-items:baseline}}
       `}</style>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FOOTER, routeFor } from "@/lib/xo-data";
+import { AdminLauncher } from "@/components/xo/admin/AdminLauncher";
 
 /* Explicit label → real route map so every footer link lands on its own page
    (the fuzzy routeFor() fallback collapsed several distinct labels onto one route). */
@@ -40,29 +41,29 @@ const LEGAL: [string, string][] = [
 export function Footer() {
   return (
     <footer className="foot">
-      <div className="wrap-wide" style={{ paddingTop: 90, paddingBottom: 48 }}>
+      <div className="wrap-wide" style={{ paddingTop: "clamp(56px,7vw,90px)", paddingBottom: 48 }}>
         <div
           className="foot-top"
-          style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, marginBottom: 70, alignItems: "start" }}
+          style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(36px,4.5vw,56px)", marginBottom: "clamp(44px,5.5vw,70px)", alignItems: "start" }}
         >
           <div style={{ maxWidth: 460 }}>
             <div className="display" style={{ fontSize: "clamp(3rem,7vw,5.2rem)", letterSpacing: "0.01em" }}>
-              Custom <span className="italic" style={{ color: "var(--amber-2)" }}>yourself.</span>
+              We know <span className="italic" style={{ color: "var(--amber-2)" }}>tailoring.</span>
             </div>
             <p className="lede" style={{ color: "var(--on-dark-mut)", fontSize: "0.95rem", marginTop: 20 }}>
-              A bespoke tailoring house built on presence &amp; identity. Cut and made in New Delhi since 2020.
+              A small tailoring house in New Delhi. We&apos;ve been cutting and sewing suits by hand since 2020.
             </p>
             <Link className="btn btn-light" style={{ marginTop: 30 }} href="/book-consultation">
               Book a Consultation
             </Link>
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "48px 60px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(28px,3.5vw,48px) clamp(36px,5vw,60px)" }}>
             {FOOTER.map((col) => (
               <div key={col.head} style={{ minWidth: 150 }}>
-                <div className="over" style={{ color: "var(--on-dark-mut)", marginBottom: 20 }}>
+                <div className="over" style={{ color: "var(--on-dark-mut)", marginBottom: 16 }}>
                   {col.head}
                 </div>
-                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 4 }}>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 2 }}>
                   {col.links.map((l) => (
                     <li key={l}>
                       <FooterLink label={l} href={externalFor(l) ?? LINK_MAP[l] ?? routeFor(l)} external={!!externalFor(l)} />
@@ -80,15 +81,16 @@ export function Footer() {
           ))}
         </nav>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12, paddingTop: 22 }}>
-          <span className="mono" style={{ color: "var(--on-dark-mut)" }}>
+          <span className="mono tnum" style={{ color: "var(--on-dark-mut)" }}>
             © 1 OAK · 2020–2026 XO47 — Bespoke Menswear
           </span>
           <span className="mono" style={{ color: "var(--on-dark-mut)" }}>
             weknowtailoring.com · @studio.xo47
           </span>
+          <AdminLauncher />
         </div>
       </div>
-      <style>{`@media(min-width:900px){.foot-top{grid-template-columns:1fr 1.1fr !important;gap:80px !important}}`}</style>
+      <style>{`@media(min-width:768px){.foot-top{grid-template-columns:1fr 1.1fr !important;gap:clamp(48px,6vw,80px) !important}}`}</style>
     </footer>
   );
 }
@@ -103,8 +105,8 @@ function externalFor(label: string): string | null {
 function FooterLink({ label, href, external, mono = false }: { label: string; href: string; external: boolean; mono?: boolean }) {
   const base = mono ? "0.52" : "0.64";
   const style: React.CSSProperties = mono
-    ? { display: "inline-block", padding: "5px 0", color: "var(--on-dark)", opacity: 0.52, transition: "opacity .3s,color .3s" }
-    : { display: "inline-block", padding: "6px 0", fontSize: "0.86rem", color: "var(--on-dark)", opacity: 0.64, transition: "opacity .3s,color .3s" };
+    ? { display: "inline-block", padding: "9px 0", color: "var(--on-dark)", opacity: 0.52, transition: "opacity .3s,color .3s" }
+    : { display: "inline-block", padding: "10px 0", fontSize: "0.86rem", color: "var(--on-dark)", opacity: 0.64, transition: "opacity .3s,color .3s" };
   const className = mono ? "mono" : undefined;
   const onEnter = (e: React.MouseEvent<HTMLElement>) => {
     e.currentTarget.style.opacity = "1";

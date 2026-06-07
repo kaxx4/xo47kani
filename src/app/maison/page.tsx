@@ -23,7 +23,7 @@ export default function MaisonPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display" style={{ fontSize: "clamp(3rem,9vw,9rem)", lineHeight: 0.9, margin: "clamp(18px,3vw,34px) 0 clamp(18px,3vw,30px)", maxWidth: "16ch" }}>
-              A house built to be <span className="italic serif-accent">felt.</span>
+              We take our <span className="italic serif-accent">time.</span>
             </h1>
           </Reveal>
           <Reveal delay={2}>
@@ -34,7 +34,7 @@ export default function MaisonPage() {
 
       {/* story split */}
       <section style={{ padding: "var(--sec) 0" }}>
-        <div className="wrap-wide maison-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}>
+        <div className="wrap-wide maison-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(34px,4.5vw,56px)", alignItems: "start" }}>
           <Reveal>
             <div className="clip" data-parallax="0.05">
               <Figure src={img("look-10.jpg")} alt="A bespoke XO47 commission in tailoring" float style={{ aspectRatio: "4/5" }} />
@@ -48,7 +48,7 @@ export default function MaisonPage() {
             ))}
             <Reveal delay={2}>
               <p className="display d-2 italic" style={{ color: "var(--clay)", margin: "36px 0 14px" }}>
-                &ldquo;It is not for you to show — it is for you to feel.&rdquo;
+                &ldquo;I&apos;ve never made a suit to be looked at — I make it for how it feels to wear.&rdquo;
               </p>
               <div className="mono" style={{ color: "var(--muted)" }}>— Shrey Suneja, Founder</div>
             </Reveal>
@@ -59,12 +59,12 @@ export default function MaisonPage() {
       {/* pillars */}
       <section style={{ background: "var(--dove)", padding: "var(--sec) 0" }}>
         <div className="wrap-wide">
-          <Reveal><h2 className="eyebrow" style={{ margin: "0 0 50px" }}>What we stand on</h2></Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "50px 44px" }}>
+          <Reveal><h2 className="eyebrow" style={{ margin: "0 0 clamp(28px,4vw,50px)" }}>What we stand on</h2></Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))", gap: "clamp(32px,4vw,50px) 44px" }}>
             {STORY.pillars.map((p, i) => (
               <Reveal key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div style={{ borderTop: "1px solid var(--ink)", paddingTop: 26 }}>
-                  <span className="mono" style={{ color: "var(--clay)" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mono tnum" style={{ color: "var(--clay)" }}>{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="display d-1" style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)", margin: "14px 0 16px" }}>{p[0]}</h3>
                   <p className="lede" style={{ fontSize: "0.96rem", margin: 0 }}>{p[1]}</p>
                 </div>
@@ -77,11 +77,11 @@ export default function MaisonPage() {
       {/* milestones */}
       <section style={{ padding: "var(--sec) 0" }}>
         <div className="wrap-wide">
-          <Reveal><h2 className="display d-1" style={{ marginBottom: 56 }}>The <span className="italic serif-accent">timeline.</span></h2></Reveal>
+          <Reveal><h2 className="display d-1" style={{ marginBottom: "clamp(32px,4.5vw,56px)" }}>The <span className="italic serif-accent">timeline.</span></h2></Reveal>
           {STORY.milestones.map((m, i) => (
             <Reveal key={i} delay={1}>
               <div style={{ display: "grid", gridTemplateColumns: "minmax(90px,0.4fr) 1fr", gap: 28, alignItems: "baseline", borderTop: "1px solid var(--line)", padding: "26px 0" }}>
-                <span className="display d-2" style={{ color: "var(--clay)" }}>{m[0]}</span>
+                <span className="display d-2 tnum" style={{ color: "var(--clay)" }}>{m[0]}</span>
                 <span className="lede" style={{ fontSize: "1.05rem", color: "var(--ink)" }}>{m[1]}</span>
               </div>
             </Reveal>
@@ -93,12 +93,12 @@ export default function MaisonPage() {
       <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--sec) 0", overflow: "hidden" }}>
         <div className="wrap-wide">
           <Reveal><div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 24 }}>Brand Recognition</div>
-            <h2 className="display d-1" style={{ marginBottom: 44 }}>Worn for the moments<br />that <span className="italic" style={{ color: "var(--amber-2)" }}>matter.</span></h2></Reveal>
+            <h2 className="display d-1" style={{ marginBottom: 44 }}>Dressed for a life<br />lived in <span className="italic" style={{ color: "var(--amber-2)" }}>public.</span></h2></Reveal>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: "16px 30px" }}>
             {FACES.map((f, i) => (
               <Reveal key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div style={{ display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid var(--on-dark-line)", paddingTop: 14 }}>
-                  <span className="mono" style={{ color: "var(--amber-2)" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mono tnum" style={{ color: "var(--amber-2)" }}>{String(i + 1).padStart(2, "0")}</span>
                   <span className="display d-3">{f}</span>
                 </div>
               </Reveal>
@@ -108,7 +108,7 @@ export default function MaisonPage() {
       </section>
 
       <CTABand />
-      <style>{`@media(min-width:900px){.maison-split{grid-template-columns:0.85fr 1.15fr !important;gap:80px !important}}`}</style>
+      <style>{`@media(min-width:768px){.maison-split{grid-template-columns:0.85fr 1.15fr !important;gap:clamp(44px,5.5vw,80px) !important}}`}</style>
     </div>
   );
 }

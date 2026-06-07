@@ -47,7 +47,7 @@ export default function StudioPage() {
 
       {/* story split */}
       <section style={{ padding: "var(--sec) 0" }}>
-        <div className="wrap-wide studio-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}>
+        <div className="wrap-wide studio-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(34px,4.5vw,56px)", alignItems: "start" }}>
           <Reveal>
             <div className="clip">
               <Figure src={img("look-05.jpg")} alt="Inside the XO47 studio" float style={{ aspectRatio: "4/5" }} />
@@ -94,7 +94,7 @@ export default function StudioPage() {
           {PROCESS.map((s, i) => (
             <Reveal key={s[0]} delay={((i % 2) + 1) as 1 | 2}>
               <div style={{ display: "grid", gridTemplateColumns: "64px 1fr", gap: 24, alignItems: "start", borderBottom: "1px solid var(--line)", padding: "30px 0" }}>
-                <span className="display d-3" style={{ color: "var(--clay)" }}>{s[0]}</span>
+                <span className="display d-3 tnum" style={{ color: "var(--clay)" }}>{s[0]}</span>
                 <div className="studio-step" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 10 }}>
                   <h3 className="display d-2">{s[1]}</h3>
                   <p className="lede" style={{ fontSize: "0.95rem", color: "var(--ink-2)", margin: 0, maxWidth: "52ch" }}>{s[2]}</p>
@@ -110,7 +110,7 @@ export default function StudioPage() {
         <div className="wrap-wide">
           <Reveal>
             <div className="clip">
-              <Figure src={img("look-10.jpg")} alt="A finished XO47 commission" float style={{ aspectRatio: "16/9", maxHeight: "88vh" }} />
+              <Figure src={img("look-10.jpg")} alt="A finished XO47 commission" float style={{ aspectRatio: "16/9", maxHeight: "70vh" }} />
             </div>
           </Reveal>
         </div>
@@ -118,7 +118,7 @@ export default function StudioPage() {
 
       {/* visit details */}
       <section style={{ background: "var(--ink)", color: "var(--on-dark)", padding: "var(--sec) 0", overflow: "hidden" }}>
-        <div className="wrap-wide visit-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 50, alignItems: "start" }}>
+        <div className="wrap-wide visit-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(32px,4vw,50px)", alignItems: "start" }}>
           <Reveal>
             <div className="eyebrow" style={{ color: "var(--on-dark-mut)", marginBottom: 24 }}>The Visit</div>
             <h2 className="display d-1" style={{ marginBottom: 26 }}>Come and be <span className="italic" style={{ color: "var(--amber-2)" }}>measured.</span></h2>
@@ -147,8 +147,8 @@ export default function StudioPage() {
 
       <CTABand />
       <style>{`
-        @media(min-width:900px){.studio-split{grid-template-columns:0.9fr 1.1fr !important;gap:90px !important}.visit-grid{grid-template-columns:1fr 1fr !important;gap:80px !important}}
-        @media(min-width:820px){.studio-step{grid-template-columns:1fr 1.4fr !important;gap:32px !important;align-items:baseline}}
+        @media(min-width:768px){.studio-split{grid-template-columns:0.9fr 1.1fr !important;gap:clamp(48px,6vw,90px) !important}.visit-grid{grid-template-columns:1fr 1fr !important;gap:clamp(44px,5.5vw,80px) !important}}
+        @media(min-width:768px){.studio-step{grid-template-columns:1fr 1.4fr !important;gap:32px !important;align-items:baseline}}
       `}</style>
     </div>
   );

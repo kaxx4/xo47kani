@@ -1,7 +1,7 @@
 import { InfoPageLayout } from "@/components/xo/InfoPageLayout";
 
 export const metadata = {
-  title: "Custom Yourself — The Journal | XO47",
+  title: "Made from Scratch — The Journal | XO47",
   description:
     "What it actually means to commission a garment made for one body — from the first conversation to the last hand-set buttonhole. The XO47 way.",
 };
@@ -12,11 +12,11 @@ export default function CustomMadePage() {
       eyebrow="The Journal"
       title={
         <>
-          Custom <span className="italic serif-accent">yourself.</span>
+          Made from <span className="italic serif-accent">scratch.</span>
         </>
       }
       meta="On commissioning"
-      intro="Custom yourself is not a slogan we reach for lightly. It is the literal sequence of a commission — a garment drafted for one body, by people who put their name to it."
+      intro="'Bespoke' gets used loosely these days. Here is what it actually means when we use it — a suit drafted for one body, by the people who put their name to it."
       sections={[
         {
           heading: "It begins with a conversation",
@@ -42,7 +42,7 @@ export default function CustomMadePage() {
         {
           heading: "One of one",
           body: [
-            "What you are left with belongs to no one else. The pattern is yours, the measurements are yours, and the garment was cut to a body that exists exactly once. It will not announce itself — but it will hold the room the moment you walk in, and it will keep doing so for years, because it was built to. That is what we mean by custom yourself.",
+            "What you are left with belongs to no one else. The pattern is yours, the measurements are yours, and the garment was cut to a body that exists exactly once. It will not announce itself — but it will hold the room the moment you walk in, and it will keep doing so for years, because it was built to. That is what we mean when we say it was made from scratch.",
           ],
         },
       ]}

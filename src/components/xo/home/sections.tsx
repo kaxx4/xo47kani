@@ -35,13 +35,13 @@ export function Look({
 
 /* ── PHILOSOPHY — keyword rhythm + manifesto ── */
 export function PhilosophyBand({ t }: { t: MoodTheme }) {
-  const words = ["Precision", "Intention", "Structure", "Refined", "Sharp", "Timeless"];
+  const words = ["Measured", "Cut", "Sewn", "Pressed", "Finished", "Worn"];
   return (
     <section style={{ background: t.alt, color: t.text, padding: "var(--sec-lg) 0", overflow: "hidden" }}>
       <div className="wrap">
-        <Reveal><div className="over" style={{ color: t.muted, marginBottom: 50 }}>The XO47 Philosophy</div></Reveal>
+        <Reveal><div className="over" style={{ color: t.muted, marginBottom: "clamp(26px,4vw,50px)" }}>How we work</div></Reveal>
         <Reveal>
-          <h2 className="display d-1" style={{ maxWidth: "20ch", marginBottom: 80, fontWeight: 500 }}>
+          <h2 className="display d-1" style={{ maxWidth: "20ch", marginBottom: "clamp(38px,6vw,80px)", fontWeight: 500 }}>
             {words.map((w, i) => (
               <span key={i}>
                 <span style={{ color: i % 2 ? t.accent : "inherit" }}>{w}</span>
@@ -53,15 +53,15 @@ export function PhilosophyBand({ t }: { t: MoodTheme }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,290px),1fr))", gap: 60, maxWidth: 1040 }}>
           <Reveal delay={1}>
             <p className="lede" style={{ color: t.dark ? "var(--on-dark-mut)" : "var(--ink-2)", margin: 0 }}>
-              XO47 is a bespoke menswear house built on the philosophy of presence and identity. Every garment
-              begins with intention — from the choice of cloth to the precision of a single hand-set buttonhole,
-              guided by a deep reading of the man who will wear it.
+              We&apos;re a small bespoke tailoring house in New Delhi. Every suit starts with a conversation and a set
+              of measurements, and ends as a garment cut for one person — yours, down to the last hand-sewn
+              buttonhole. Nothing about it comes off a rack.
             </p>
           </Reveal>
           <Reveal delay={2}>
             <div>
               <p className="display d-2 italic" style={{ margin: "0 0 18px", color: t.accent }}>
-                “It is not for you<br />to show — it is for<br />you to feel.”
+                “I&apos;ve never made a suit<br />to be looked at. I make it<br />for how it feels to wear.”
               </p>
               <div className="mono" style={{ color: t.muted }}>— Shrey Suneja, Founder</div>
             </div>
@@ -77,26 +77,26 @@ export function CollectionsBlock({ t }: { t: MoodTheme }) {
   return (
     <section style={{ background: t.canvas, color: t.text, padding: "var(--sec) 0", overflow: "hidden" }}>
       <div className="wrap-wide">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24, marginBottom: 70 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24, marginBottom: "clamp(36px,5vw,70px)" }}>
           <Reveal>
             <div className="eyebrow" style={{ color: t.muted, marginBottom: 22 }}>The Collections</div>
             <h2 className="display d-hero" style={{ maxWidth: "11ch" }}>Crafted for<br />every <span className="italic" style={{ color: t.accent }}>chapter.</span></h2>
           </Reveal>
           <Reveal delay={1}><Link className="ulink tap" href="/collections" style={{ color: t.text }}>View all collections →</Link></Reveal>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: "70px 44px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: "clamp(40px,5vw,70px) 44px" }}>
           {COLLECTIONS.map((c, i) => (
             <Reveal key={c.label} delay={((i % 3) + 1) as 1 | 2 | 3}>
-              <Link href={c.href} style={{ display: "block", marginTop: i % 3 === 1 ? "clamp(0px,5vw,80px)" : 0 }}>
+              <Link href={c.href} className="press" style={{ display: "block", marginTop: i % 3 === 1 ? "clamp(0px,5vw,80px)" : 0 }}>
                 <div style={{ position: "relative" }}>
-                  <span className="watermark" style={{ position: "absolute", top: "-0.36em", left: "-0.1em", fontSize: "clamp(5rem,9vw,9rem)", color: t.accent, opacity: t.dark ? 0.5 : 0.16, zIndex: 0 }}>{c.n}</span>
+                  <span className="watermark tnum" style={{ position: "absolute", top: "-0.36em", left: "-0.1em", fontSize: "clamp(5rem,9vw,9rem)", color: t.accent, opacity: t.dark ? 0.5 : 0.16, zIndex: 0 }}>{c.n}</span>
                   <div className="zoom" style={{ position: "relative", zIndex: 1 }}>
                     <Look t={t} src={c.img} alt={c.label} style={{ aspectRatio: "4/5" }} />
                   </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 20 }}>
                   <h3 className="display d-3">{c.label}</h3>
-                  <span className="cap" style={{ color: t.muted }}>{c.n} / 06</span>
+                  <span className="cap tnum" style={{ color: t.muted }}>{c.n} / 06</span>
                 </div>
                 <p className="cap" style={{ marginTop: 8, color: t.muted }}>{c.desc}</p>
               </Link>
@@ -113,9 +113,9 @@ export function ColorFeature({ t }: { t: MoodTheme }) {
   return (
     <section style={{ background: t.block, color: "var(--milk)", overflow: "hidden" }}>
       <div className="wrap-wide" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0, alignItems: "center" }}>
-        <div className="cf-grid" style={{ display: "grid", gridTemplateColumns: "1fr", alignItems: "center", gap: 40 }}>
+        <div className="cf-grid" style={{ display: "grid", gridTemplateColumns: "1fr", alignItems: "center", gap: "clamp(28px,4vw,40px)" }}>
           <div style={{ padding: "var(--sec) 0" }}>
-            <Reveal><div className="over" style={{ color: "rgba(247,243,235,0.6)", marginBottom: 30 }}>Custom Yourself</div></Reveal>
+            <Reveal><div className="over" style={{ color: "rgba(247,243,235,0.6)", marginBottom: 30 }}>The House Standard</div></Reveal>
             <Reveal delay={1}>
               <h2 className="display" style={{ fontSize: "clamp(2.6rem,5.4vw,5rem)", lineHeight: 1.0, marginBottom: 34 }}>
                 Great style begins<br />with high standards —<br /><span className="italic">and being selective.</span>
@@ -130,11 +130,11 @@ export function ColorFeature({ t }: { t: MoodTheme }) {
             </Reveal>
           </div>
           <Reveal delay={1} className="cf-fig">
-            <Figure src={img("look-04.jpg")} alt="Ivory dinner suit" float style={{ aspectRatio: "3/4", maxHeight: "82vh", marginLeft: "auto", width: "100%" }} />
+            <Figure src={img("look-04.jpg")} alt="Ivory dinner suit" float style={{ aspectRatio: "3/4", maxHeight: "74vh", marginLeft: "auto", width: "100%" }} />
           </Reveal>
         </div>
       </div>
-      <style>{`@media(min-width:900px){.cf-grid{grid-template-columns:1.05fr 0.78fr !important;gap:64px !important}}`}</style>
+      <style>{`@media(min-width:768px){.cf-grid{grid-template-columns:1.05fr 0.78fr !important;gap:clamp(40px,5vw,64px) !important}}`}</style>
     </section>
   );
 }
@@ -149,7 +149,7 @@ export function Craftsmanship({ t }: { t: MoodTheme }) {
   ];
   return (
     <section style={{ background: t.alt, color: t.text, padding: "var(--sec) 0", overflow: "hidden" }}>
-      <div className="wrap craft-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 64, alignItems: "center" }}>
+      <div className="wrap craft-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(36px,5vw,64px)", alignItems: "center" }}>
         <Reveal>
           <div className="clip">
             <Look t={t} src={img("look-07.jpg")} alt="Sequinned evening jacket" style={{ aspectRatio: "4/5" }} />
@@ -158,12 +158,12 @@ export function Craftsmanship({ t }: { t: MoodTheme }) {
         <div>
           <Reveal>
             <div className="eyebrow" style={{ color: t.muted, marginBottom: 24 }}>The Craft</div>
-            <h2 className="display d-1" style={{ marginBottom: 46, maxWidth: "12ch" }}>It&apos;s handcrafted — <span className="italic" style={{ color: t.accent }}>and really, it is.</span></h2>
+            <h2 className="display d-1" style={{ marginBottom: "clamp(28px,4vw,46px)", maxWidth: "12ch" }}>It&apos;s handcrafted — <span className="italic" style={{ color: t.accent }}>and really, it is.</span></h2>
           </Reveal>
           {steps.map((s, i) => (
             <Reveal key={s[0]} delay={((i % 2) + 1) as 1 | 2}>
               <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 26, padding: "26px 0", borderTop: `1px solid ${t.dark ? "var(--on-dark-line)" : "var(--line)"}` }}>
-                <span className="display d-3" style={{ color: t.accent }}>{s[0]}</span>
+                <span className="display d-3 tnum" style={{ color: t.accent }}>{s[0]}</span>
                 <div>
                   <h3 className="display d-3" style={{ marginBottom: 8 }}>{s[1]}</h3>
                   <p className="lede" style={{ fontSize: "0.92rem", color: t.dark ? "var(--on-dark-mut)" : "var(--ink-2)", margin: 0 }}>{s[2]}</p>
@@ -173,7 +173,7 @@ export function Craftsmanship({ t }: { t: MoodTheme }) {
           ))}
         </div>
       </div>
-      <style>{`@media(min-width:920px){.craft-grid{grid-template-columns:0.9fr 1.1fr !important;gap:90px !important}}`}</style>
+      <style>{`@media(min-width:768px){.craft-grid{grid-template-columns:0.9fr 1.1fr !important;gap:clamp(48px,6vw,90px) !important}}`}</style>
     </section>
   );
 }
@@ -183,7 +183,7 @@ export function Recognition({ t }: { t: MoodTheme }) {
   return (
     <section style={{ background: t.canvas, color: t.text, paddingTop: "var(--sec)", overflow: "hidden" }}>
       <div className="wrap-wide" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 50, alignItems: "center" }}>
-        <div className="rec-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 50, alignItems: "center" }}>
+        <div className="rec-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(34px,4.5vw,50px)", alignItems: "center" }}>
           <Reveal>
             <div className="eyebrow" style={{ color: t.muted, marginBottom: 26 }}>Brand Recognition</div>
             <h2 className="display d-1" style={{ marginBottom: 28 }}>Worn for the<br />moments that <span className="italic" style={{ color: t.accent }}>matter.</span></h2>
@@ -195,14 +195,14 @@ export function Recognition({ t }: { t: MoodTheme }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: "14px 28px", maxWidth: 520 }}>
               {FACES.map((f, i) => (
                 <div key={f} style={{ display: "flex", alignItems: "center", gap: 12, borderTop: `1px solid ${t.dark ? "var(--on-dark-line)" : "var(--line)"}`, paddingTop: 12 }}>
-                  <span className="mono" style={{ color: t.accent }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mono tnum" style={{ color: t.accent }}>{String(i + 1).padStart(2, "0")}</span>
                   <span className="display d-3" style={{ fontSize: "1.15rem" }}>{f}</span>
                 </div>
               ))}
             </div>
           </Reveal>
           <Reveal delay={1}>
-            <Look t={t} src={img("look-02.jpg")} alt="Black tuxedo" style={{ aspectRatio: "4/5", maxHeight: "84vh" }} />
+            <Look t={t} src={img("look-02.jpg")} alt="Black tuxedo" style={{ aspectRatio: "4/5", maxHeight: "78vh" }} />
           </Reveal>
         </div>
       </div>
@@ -217,7 +217,7 @@ export function Recognition({ t }: { t: MoodTheme }) {
           </div>
         </div>
       </div>
-      <style>{`@media(min-width:920px){.rec-grid{grid-template-columns:1.15fr 0.85fr !important;gap:80px !important}}`}</style>
+      <style>{`@media(min-width:768px){.rec-grid{grid-template-columns:1.15fr 0.85fr !important;gap:clamp(44px,5.5vw,80px) !important}}`}</style>
     </section>
   );
 }
@@ -226,7 +226,7 @@ export function Recognition({ t }: { t: MoodTheme }) {
 export function SantaliBand() {
   return (
     <section style={{ background: "var(--forest)", color: "var(--on-dark)", padding: "var(--sec) 0", overflow: "hidden" }}>
-      <div className="wrap-wide santali-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "center" }}>
+      <div className="wrap-wide santali-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "clamp(34px,4.5vw,56px)", alignItems: "center" }}>
         <Reveal>
           <div className="fig" style={{ background: "var(--milk)", aspectRatio: "4/5" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -250,7 +250,7 @@ export function SantaliBand() {
           <Reveal delay={3}><Link className="btn btn-on-dark" href="/santali">Discover Santali</Link></Reveal>
         </div>
       </div>
-      <style>{`@media(min-width:900px){.santali-grid{grid-template-columns:0.85fr 1.15fr !important;gap:80px !important}}`}</style>
+      <style>{`@media(min-width:768px){.santali-grid{grid-template-columns:0.85fr 1.15fr !important;gap:clamp(44px,5.5vw,80px) !important}}`}</style>
     </section>
   );
 }
@@ -273,7 +273,7 @@ export function Services({ t }: { t: MoodTheme }) {
               className="svc-row"
               style={{ display: "grid", gridTemplateColumns: "64px 1fr", gap: 24, alignItems: "start", borderBottom: `1px solid ${t.dark ? "var(--on-dark-line)" : "var(--line)"}`, padding: "30px 0" }}
             >
-              <span className="display d-3" style={{ color: t.accent }}>{s[0]}</span>
+              <span className="display d-3 tnum" style={{ color: t.accent }}>{s[0]}</span>
               <div className="svc-inner" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 10 }}>
                 <h3 className="display d-2">{s[1]}</h3>
                 <p className="lede" style={{ fontSize: "0.95rem", color: t.dark ? "var(--on-dark-mut)" : "var(--ink-2)", margin: 0, maxWidth: "52ch" }}>{s[2]}</p>
@@ -282,7 +282,7 @@ export function Services({ t }: { t: MoodTheme }) {
           </Reveal>
         ))}
       </div>
-      <style>{`@media(min-width:820px){.svc-inner{grid-template-columns:1fr 1.4fr !important;gap:32px !important;align-items:baseline}}`}</style>
+      <style>{`@media(min-width:768px){.svc-inner{grid-template-columns:1fr 1.4fr !important;gap:32px !important;align-items:baseline}}`}</style>
     </section>
   );
 }
@@ -294,12 +294,12 @@ export function CTABand() {
       <div className="wrap">
         <Reveal><div className="over" style={{ color: "rgba(247,243,235,0.5)", marginBottom: 36 }}>weknowtailoring.com · Launching</div></Reveal>
         <Reveal>
-          <h2 className="display d-mega" style={{ marginBottom: 8 }}>Custom</h2>
-          <h2 className="display d-mega italic" style={{ color: "var(--amber-2)", marginBottom: 50 }}>yourself.</h2>
+          <h2 className="display d-mega" style={{ marginBottom: 8 }}>Let&apos;s</h2>
+          <h2 className="display d-mega italic" style={{ color: "var(--amber-2)", marginBottom: 50 }}>talk.</h2>
         </Reveal>
         <Reveal delay={1}>
           <p className="lede" style={{ color: "rgba(247,243,235,0.66)", maxWidth: "46ch", margin: "0 auto 52px" }}>
-            Every commission begins with a conversation at the studio in Ambawatta One. Tell us the occasion — we&apos;ll tell you the cloth.
+            It always starts with a conversation at our studio in Ambawatta One. Tell us what it&apos;s for, and we&apos;ll help you find the right cloth.
           </p>
           <Link className="btn btn-light" href="/book-consultation">Book a Consultation</Link>
         </Reveal>

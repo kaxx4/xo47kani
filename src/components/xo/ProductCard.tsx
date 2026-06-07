@@ -6,10 +6,10 @@ import { fmt, type Product } from "@/lib/xo-data";
    category tag, name + from-price, cut · fabric caption. */
 export function ProductCard({ product, index }: { product: Product; index: number }) {
   return (
-    <Link href={`/product/${product.slug}`} style={{ display: "block" }}>
+    <Link href={`/product/${product.slug}`} className="press" style={{ display: "block" }}>
       <div style={{ position: "relative" }}>
         <span
-          className="watermark"
+          className="watermark tnum"
           style={{
             position: "absolute",
             top: "-0.3em",
