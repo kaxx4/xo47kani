@@ -12,27 +12,62 @@ import { ConsultationsAdmin } from "@/components/xo/admin/sections/Consultations
 
 type Tab = "dashboard" | "products" | "categories" | "photos" | "consultations";
 
-const TABS: { id: Tab; label: string }[] = [
-  { id: "dashboard", label: "Dashboard" },
-  { id: "products", label: "Products" },
-  { id: "categories", label: "Categories" },
-  { id: "photos", label: "Photos" },
-  { id: "consultations", label: "Consultations" },
+/** Sidebar nav: numeral echoes the house index motif. "Enquiries" is the
+ *  client-facing label for the ConsultationsAdmin section. */
+const TABS: { id: Tab; index: string; label: string }[] = [
+  { id: "dashboard", index: "01", label: "Dashboard" },
+  { id: "products", index: "02", label: "Products" },
+  { id: "categories", index: "03", label: "Categories" },
+  { id: "photos", index: "04", label: "Photos" },
+  { id: "consultations", index: "05", label: "Enquiries" },
 ];
 
-const TITLES: Record<Tab, string> = {
-  dashboard: "Dashboard",
-  products: "Products",
-  categories: "Categories",
-  photos: "Photos",
-  consultations: "Consultations",
+/** Editorial section header copy — owned centrally by the panel so sections
+ *  never repeat a giant title. House voice: warm, spare, first-person-plural. */
+const HEADERS: Record<Tab, { eyebrow: string; title: string; subtitle: string }> = {
+  dashboard: {
+    eyebrow: "The House Ledger",
+    title: "The atelier, today.",
+    subtitle: "Where the house stands this morning.",
+  },
+  products: {
+    eyebrow: "The Wardrobe",
+    title: "Every piece we offer.",
+    subtitle: "The pieces a client can commission.",
+  },
+  categories: {
+    eyebrow: "The Collections",
+    title: "How the wardrobe is arranged.",
+    subtitle: "The chapters of the house.",
+  },
+  photos: {
+    eyebrow: "The Library",
+    title: "The house’s imagery.",
+    subtitle: "Cloth, look and detail — ready to place.",
+  },
+  consultations: {
+    eyebrow: "The Appointment Book",
+    title: "Who has written in.",
+    subtitle: "Every enquiry, newest first.",
+  },
 };
 
 export function AdminPanel({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<Tab>("dashboard");
+  // Computed client-side in an effect to avoid a hydration mismatch on the date.
+  const [today, setToday] = useState("");
 
   useEffect(() => {
     seedIfEmpty();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only date, set once post-hydration to avoid an SSR/client mismatch
+    setToday(
+      new Intl.DateTimeFormat("en-GB", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }).format(new Date()),
+    );
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
@@ -44,6 +79,8 @@ export function AdminPanel({ onClose }: { onClose: () => void }) {
       window.removeEventListener("keydown", onKey);
     };
   }, [onClose]);
+
+  const header = HEADERS[tab];
 
   return (
     <div className="adm-panel" style={panel} role="dialog" aria-modal="true" aria-label="XO47 Atelier Admin">
@@ -72,7 +109,19 @@ export function AdminPanel({ onClose }: { onClose: () => void }) {
                   borderLeftColor: active ? "var(--amber-2)" : "transparent",
                 }}
               >
-                {t.label}
+                <span
+                  className="mono tnum adm-nav-index"
+                  aria-hidden="true"
+                  style={{
+                    fontSize: "0.54rem",
+                    letterSpacing: "0.16em",
+                    color: active ? "var(--amber-2)" : "var(--on-dark-mut)",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  {t.index}
+                </span>
+                <span>{t.label}</span>
               </button>
             );
           })}
@@ -81,32 +130,44 @@ export function AdminPanel({ onClose }: { onClose: () => void }) {
         <div style={{ flex: 1 }} />
 
         <div className="adm-side-foot" style={sideFoot}>
-          <button
-            type="button"
-            className="press"
-            onClick={() => {
-              lock();
-              onClose();
-            }}
-            style={lockBtn}
-          >
-            Lock
-          </button>
-          <button type="button" className="press" onClick={onClose} style={closeBtn}>
-            Close
-          </button>
+          <span className="mono adm-side-place" style={place}>Ambawatta One · Mehrauli</span>
+          <div className="adm-side-actions" style={sideActions}>
+            <button
+              type="button"
+              className="press"
+              onClick={() => {
+                lock();
+                onClose();
+              }}
+              style={lockBtn}
+            >
+              Lock
+            </button>
+            <button type="button" className="press" onClick={onClose} style={closeBtn}>
+              Close
+            </button>
+          </div>
         </div>
       </aside>
 
       {/* MAIN */}
       <main className="adm-main" style={main}>
         <header className="adm-topbar" style={topbar}>
-          <h1 className="display d-3" style={{ margin: 0, lineHeight: 1 }}>{TITLES[tab]}</h1>
-          <span className="mono" style={{ color: "var(--muted)", fontSize: "0.56rem", letterSpacing: "0.16em" }}>
-            XO47 / Admin / {TITLES[tab]}
-          </span>
+          <div className="adm-topbar-head" style={topbarHead}>
+            <span className="over" style={{ color: "var(--clay)" }}>{header.eyebrow}</span>
+            <h1 className="display d-2" style={{ margin: "10px 0 0", lineHeight: 1 }}>{header.title}</h1>
+            <p className="adm-topbar-sub" style={topbarSub}>{header.subtitle}</p>
+          </div>
+          <div className="adm-topbar-meta" style={topbarMeta}>
+            <span className="mono" style={{ color: "var(--muted)", fontSize: "0.56rem", letterSpacing: "0.18em" }}>
+              XO47 · Private Atelier
+            </span>
+            <span className="mono tnum adm-today" style={{ color: "var(--muted)", fontSize: "0.56rem", letterSpacing: "0.12em", minHeight: "1em" }}>
+              {today}
+            </span>
+          </div>
         </header>
-        <div className="adm-content" style={content}>
+        <div className="adm-content" style={content} key={tab}>
           {tab === "dashboard" && <Dashboard />}
           {tab === "products" && <ProductsAdmin />}
           {tab === "categories" && <CategoriesAdmin />}
@@ -116,11 +177,17 @@ export function AdminPanel({ onClose }: { onClose: () => void }) {
       </main>
 
       <style>{`
-        .adm-panel { animation: adm-in 0.42s cubic-bezier(0.16,1,0.3,1); }
-        @keyframes adm-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        /* Staggered enter: sidebar settles first, then the topbar and content rise. */
+        .adm-side { animation: adm-side-in 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+        .adm-topbar { animation: adm-rise 0.55s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
+        .adm-content { animation: adm-rise 0.55s cubic-bezier(0.22,1,0.36,1) 0.26s both; }
+        @keyframes adm-side-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+        @keyframes adm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+        .adm-nav-btn { display: flex; align-items: baseline; gap: 12px; }
         .adm-nav-btn:hover[data-active="0"] { color: var(--on-dark) !important; }
+        .adm-nav-btn:hover[data-active="0"] .adm-nav-index { color: var(--on-dark-mut); }
         @media (prefers-reduced-motion: reduce) {
-          .adm-panel { animation: none; }
+          .adm-side, .adm-topbar, .adm-content { animation: none !important; }
         }
         @media (max-width: 759px) {
           .adm-panel { flex-direction: column !important; }
@@ -143,9 +210,13 @@ export function AdminPanel({ onClose }: { onClose: () => void }) {
             border-bottom: 2px solid transparent !important;
             white-space: nowrap !important;
             padding: 14px 12px !important;
+            gap: 7px !important;
           }
           .adm-nav-btn[data-active="1"] { border-bottom-color: var(--amber-2) !important; }
-          .adm-side-foot { flex: 0 0 auto !important; padding: 0 0 0 8px !important; flex-direction: row !important; gap: 6px !important; }
+          .adm-side-foot { flex: 0 0 auto !important; padding: 0 0 0 8px !important; }
+          .adm-side-place { display: none !important; }
+          .adm-side-actions { flex-direction: row !important; gap: 6px !important; }
+          .adm-topbar-meta { display: none !important; }
         }
       `}</style>
     </div>
@@ -163,7 +234,7 @@ const panel: CSSProperties = {
 };
 
 const side: CSSProperties = {
-  width: "clamp(200px, 18vw, 250px)",
+  width: "clamp(210px, 18vw, 260px)",
   flex: "0 0 auto",
   background: "var(--ink)",
   color: "var(--on-dark)",
@@ -202,12 +273,24 @@ const navBtn: CSSProperties = {
 const sideFoot: CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  gap: 8,
+  gap: 14,
   padding: "0 22px",
 };
 
+const place: CSSProperties = {
+  color: "var(--on-dark-mut)",
+  fontSize: "0.5rem",
+  letterSpacing: "0.2em",
+};
+
+const sideActions: CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  gap: 8,
+};
+
 const lockBtn: CSSProperties = {
-  height: 36,
+  minHeight: 38,
   background: "transparent",
   border: "1px solid var(--on-dark-line)",
   color: "var(--on-dark)",
@@ -240,12 +323,35 @@ const main: CSSProperties = {
 
 const topbar: CSSProperties = {
   display: "flex",
-  alignItems: "baseline",
+  alignItems: "flex-start",
   justifyContent: "space-between",
-  gap: 16,
+  gap: 24,
   flexWrap: "wrap",
-  padding: "clamp(18px, 2.5vw, 28px) clamp(20px, 3vw, 40px)",
+  padding: "clamp(22px, 3vw, 34px) clamp(20px, 3vw, 40px)",
   borderBottom: "1px solid var(--line)",
+  flex: "0 0 auto",
+};
+
+const topbarHead: CSSProperties = {
+  minWidth: 0,
+};
+
+const topbarSub: CSSProperties = {
+  margin: "12px 0 0",
+  fontFamily: "var(--ff-display)",
+  fontStyle: "italic",
+  fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
+  color: "var(--muted)",
+  lineHeight: 1.3,
+};
+
+const topbarMeta: CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-end",
+  gap: 8,
+  textAlign: "right",
+  paddingTop: 6,
   flex: "0 0 auto",
 };
 

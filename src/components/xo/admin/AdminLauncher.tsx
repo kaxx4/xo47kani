@@ -90,9 +90,17 @@ export function AdminLauncher() {
 
       {mounted && modal &&
         createPortal(
-          <div style={backdrop} onClick={() => setModal(false)}>
-            <div className="adm-card" style={card} onClick={(e) => e.stopPropagation()}>
-              <div className="over" style={{ color: "var(--clay)", marginBottom: 18 }}>Atelier Access</div>
+          <div className="adm-key-backdrop" style={backdrop} onClick={() => setModal(false)}>
+            <div
+              className="adm-card adm-lift adm-key-card"
+              style={card}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Atelier access"
+            >
+              <div className="over" style={{ color: "var(--clay)", textAlign: "center" }}>Atelier Access</div>
+              <h2 className="display d-3" style={keyHeading}>The house, unlocked.</h2>
               <input
                 autoFocus
                 type="password"
@@ -107,6 +115,7 @@ export function AdminLauncher() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") submit();
                 }}
+                aria-invalid={error}
                 style={{ marginBottom: 16, textAlign: "center", letterSpacing: "0.4em" }}
               />
               <button type="button" className="adm-btn" onClick={submit} style={{ width: "100%" }}>
@@ -116,6 +125,15 @@ export function AdminLauncher() {
                 <p style={errLine}>Incorrect code.</p>
               )}
             </div>
+            <style>{`
+              .adm-key-backdrop { animation: adm-key-fade 0.32s cubic-bezier(0.22,1,0.36,1) both; }
+              .adm-key-card { animation: adm-key-rise 0.46s cubic-bezier(0.22,1,0.36,1) 0.06s both; }
+              @keyframes adm-key-fade { from { opacity: 0; } to { opacity: 1; } }
+              @keyframes adm-key-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+              @media (prefers-reduced-motion: reduce) {
+                .adm-key-backdrop, .adm-key-card { animation: none !important; }
+              }
+            `}</style>
           </div>,
           document.body,
         )}
@@ -143,6 +161,8 @@ const backdrop: CSSProperties = {
   inset: 0,
   zIndex: 650,
   background: "rgba(20, 17, 14, 0.55)",
+  backdropFilter: "blur(6px)",
+  WebkitBackdropFilter: "blur(6px)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -152,6 +172,13 @@ const backdrop: CSSProperties = {
 const card: CSSProperties = {
   width: "100%",
   maxWidth: 360,
+  padding: "clamp(28px, 4vw, 40px)",
+};
+
+const keyHeading: CSSProperties = {
+  margin: "14px 0 24px",
+  textAlign: "center",
+  lineHeight: 1.06,
 };
 
 const errLine: CSSProperties = {

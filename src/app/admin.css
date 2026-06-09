@@ -1,20 +1,41 @@
 /* XO47 — Admin styling contract.
    Section authors USE these classes; do NOT redefine them.
-   border-radius is 0 everywhere (brand rule). */
+   border-radius is 0 everywhere (brand rule).
+   No `transition: all` — every transition names its properties.
+   prefers-reduced-motion is honoured at the foot of this file. */
+
+/* ───────────────────────── Inputs ───────────────────────── */
 
 .adm-input {
   width: 100%;
+  min-height: 44px;
   background: transparent;
   border: 1px solid var(--line);
-  padding: 10px 12px;
+  padding: 12px 14px;
   font-family: var(--ff-sans);
   font-size: 0.95rem;
   color: var(--ink);
   outline: none;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
+.adm-input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+/* focus: keep the ink border, lay a hairline clay accent underneath — no radius. */
 .adm-input:focus {
   border-color: var(--ink);
+  box-shadow: inset 0 -2px 0 -1px var(--clay);
+}
+textarea.adm-input {
+  min-height: 96px;
+  resize: vertical;
+  line-height: 1.55;
+}
+select.adm-input {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 .adm-label {
@@ -27,34 +48,39 @@
   margin-bottom: 8px;
 }
 
+/* ───────────────────────── Surfaces ───────────────────────── */
+
 .adm-card {
   border: 1px solid var(--line);
   background: var(--milk);
   padding: clamp(16px, 2vw, 24px);
 }
 
+/* ───────────────────────── Buttons ───────────────────────── */
+
 .adm-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 18px;
+  min-height: 44px;
+  padding: 0 20px;
   background: var(--ink);
   color: var(--milk);
   border: 1px solid var(--ink);
   font-family: var(--ff-sans);
   font-size: 0.62rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.16s;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    color 0.3s var(--ease), transform 0.16s var(--ease);
 }
 .adm-btn:hover {
   background: var(--clay);
   border-color: var(--clay);
 }
 .adm-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 .adm-btn:disabled {
   opacity: 0.4;
@@ -65,24 +91,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 18px;
+  min-height: 44px;
+  padding: 0 20px;
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--line);
   font-family: var(--ff-sans);
   font-size: 0.62rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.16s;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    color 0.3s var(--ease), transform 0.16s var(--ease);
 }
 .adm-btn-ghost:hover {
   border-color: var(--ink);
   background: transparent;
 }
 .adm-btn-ghost:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 .adm-btn-ghost:disabled {
   opacity: 0.4;
@@ -93,29 +120,32 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 18px;
+  min-height: 44px;
+  padding: 0 20px;
   background: transparent;
   color: var(--clay);
   border: 1px solid var(--clay);
   font-family: var(--ff-sans);
   font-size: 0.62rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.16s;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    color 0.3s var(--ease), transform 0.16s var(--ease);
 }
 .adm-btn-danger:hover {
   background: var(--clay);
   color: var(--milk);
 }
 .adm-btn-danger:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 .adm-btn-danger:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+/* ───────────────────────── Status chips ───────────────────────── */
 
 .adm-chip {
   display: inline-flex;
@@ -146,6 +176,10 @@
   border-color: var(--line);
 }
 
+/* ───────────────────────── Legacy table row (kept working) ─────────────────────────
+   Older sections still render .adm-tr / .adm-th; keep them functional and refined
+   until each section migrates to the editorial .adm-row below. */
+
 .adm-tr {
   display: grid;
   align-items: center;
@@ -162,6 +196,117 @@
   color: var(--muted);
 }
 
+/* ───────────────────────── Editorial index row ─────────────────────────
+   The house index motif: clay numeral + serif title + quiet meta + quiet actions.
+   Mirrors the public Craftsmanship / Services index rows. */
+
+.adm-row {
+  display: grid;
+  align-items: center;
+  gap: clamp(14px, 2vw, 24px);
+  padding: clamp(16px, 2vw, 22px) 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background 0.3s var(--ease);
+}
+.adm-row:hover {
+  background: rgba(156, 84, 53, 0.035);
+}
+
+.adm-index {
+  font-family: var(--ff-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--clay);
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  line-height: 1;
+}
+
+.adm-name {
+  font-family: var(--ff-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* Quiet text action — like .ulink but admin-scaled. Sits low-opacity, rises on
+   row hover / focus-within, but never disappears (touch users always see it). */
+.adm-quiet {
+  display: inline-block;
+  position: relative;
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 2px;
+  opacity: 0.55;
+  transition: opacity 0.25s var(--ease), color 0.25s var(--ease);
+}
+.adm-quiet::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.adm-quiet:hover::after,
+.adm-quiet:focus-visible::after {
+  transform: scaleX(1);
+}
+.adm-quiet:hover,
+.adm-quiet:focus-visible {
+  opacity: 1;
+}
+.adm-quiet--danger {
+  color: var(--clay);
+}
+.adm-row:hover .adm-quiet,
+.adm-row:focus-within .adm-quiet {
+  opacity: 1;
+}
+
+/* ───────────────────────── Stat strip (the House Ledger) ─────────────────────────
+   Hairline-divided numbers, NOT equal KPI boxes. */
+
+.adm-stat-strip {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(20px, 3vw, 30px) 0;
+}
+
+.adm-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 clamp(20px, 3vw, 40px);
+}
+.adm-stat:first-child {
+  padding-left: 0;
+}
+.adm-stat:not(:first-child) {
+  border-left: 1px solid var(--line);
+}
+
+.adm-stat-num {
+  font-family: var(--ff-display);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 0.85;
+  color: var(--ink);
+}
+
+/* ───────────────────────── Empty state ───────────────────────── */
+
 .adm-empty {
   text-align: center;
   color: var(--muted);
@@ -171,10 +316,49 @@
   padding: 60px 0;
 }
 
+/* ───────────────────────── Thumbnails ─────────────────────────
+   Utilitarian admin covers (not the public floating multiply figures), so a
+   subtle pure-black inset outline is correct here — never tinted. */
+
 .adm-thumb {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   background: var(--dove);
   display: block;
+  outline: 1px solid rgba(0, 0, 0, 0.09);
+  outline-offset: -1px;
+}
+.adm-row img,
+.adm-tr img {
+  outline: 1px solid rgba(0, 0, 0, 0.09);
+  outline-offset: -1px;
+}
+
+/* ───────────────────────── Floating lift ─────────────────────────
+   Soft layered shadow for floating surfaces only (the PIN modal).
+   List/panel surfaces stay flat & hairline per brand. */
+
+.adm-lift {
+  box-shadow: 0 30px 70px -28px rgba(20, 17, 14, 0.45),
+    0 8px 20px -12px rgba(20, 17, 14, 0.35);
+}
+
+/* ───────────────────────── Reduced motion ───────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .adm-input,
+  .adm-btn,
+  .adm-btn-ghost,
+  .adm-btn-danger,
+  .adm-row,
+  .adm-quiet,
+  .adm-quiet::after {
+    transition: none !important;
+  }
+  .adm-btn:active,
+  .adm-btn-ghost:active,
+  .adm-btn-danger:active {
+    transform: none !important;
+  }
 }

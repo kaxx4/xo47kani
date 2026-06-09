@@ -86,10 +86,17 @@ function PhotoCard({ photo }: { photo: AdminPhoto }) {
   }
 
   return (
-    <div className="adm-card" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <figure
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        margin: 0,
+      }}
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={photo.dataUrl} alt={photo.name} className="adm-thumb" />
-      <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <figcaption style={{ display: "flex", flexDirection: "column", gap: 4 }}>
         <span
           className="cap"
           title={photo.name}
@@ -105,26 +112,30 @@ function PhotoCard({ photo }: { photo: AdminPhoto }) {
         <span className="mono tnum" style={{ color: "var(--muted)" }}>
           {formatDate(photo.createdAt)}
         </span>
-      </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "auto" }}>
-        <button
-          type="button"
-          className="adm-btn-ghost press"
-          onClick={copy}
-          style={{ flex: "1 1 auto", minWidth: 0 }}
-        >
+      </figcaption>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: "4px 18px",
+          marginTop: "auto",
+          paddingTop: 4,
+          borderTop: "1px solid var(--line)",
+        }}
+      >
+        <button type="button" className="adm-quiet" onClick={copy}>
           {copied ? "Copied" : "Copy reference"}
         </button>
         <button
           type="button"
-          className="adm-btn-danger press"
+          className="adm-quiet adm-quiet--danger"
           onClick={remove}
-          style={{ flex: "0 0 auto" }}
         >
           Delete
         </button>
       </div>
-    </div>
+    </figure>
   );
 }
 
@@ -154,72 +165,93 @@ export function PhotosAdmin() {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-      <div
+    <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px, 4vw, 44px)" }}>
+      {/* Upload affordance — a generous hairline tile that reads as an invitation,
+          not a SaaS button. The file input + canvas-downscale logic is untouched. */}
+      <label
+        className="press"
         style={{
           display: "flex",
-          flexWrap: "wrap",
+          flexDirection: "column",
           alignItems: "center",
-          gap: 16,
-          justifyContent: "space-between",
+          justifyContent: "center",
+          textAlign: "center",
+          gap: 10,
+          minHeight: "clamp(150px, 22vw, 200px)",
+          padding: "clamp(28px, 4vw, 44px) 20px",
+          border: "1px solid var(--line)",
+          background: busy ? "rgba(156, 84, 53, 0.035)" : "transparent",
+          cursor: busy ? "wait" : "pointer",
+          transition: "background 0.3s var(--ease), border-color 0.3s var(--ease)",
         }}
+        aria-busy={busy}
       >
-        <p
-          className="mono tnum"
-          style={{ color: "var(--muted)", margin: 0 }}
+        <span
+          className="over"
           aria-live="polite"
+          style={{ color: busy ? "var(--clay)" : "var(--ink)" }}
         >
-          {busy
-            ? "Compressing…"
-            : `${photos.length} ${photos.length === 1 ? "photo" : "photos"}`}
-        </p>
-        <label
-          className="adm-btn press"
-          style={{ cursor: busy ? "not-allowed" : "pointer", opacity: busy ? 0.4 : 1 }}
-        >
-          {busy ? "Compressing…" : "Upload photos"}
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/*"
-            multiple
-            disabled={busy}
-            onChange={onFiles}
-            style={{
-              position: "absolute",
-              width: 1,
-              height: 1,
-              padding: 0,
-              margin: -1,
-              overflow: "hidden",
-              clip: "rect(0 0 0 0)",
-              whiteSpace: "nowrap",
-              border: 0,
-            }}
-          />
-        </label>
-      </div>
-
-      <p className="cap" style={{ color: "var(--muted)", margin: 0, maxWidth: "62ch" }}>
-        Photos are stored in this browser for the demo (auto-compressed). With Supabase,
-        uploads go to Storage and return real CDN URLs.
-      </p>
-
-      {photos.length === 0 ? (
-        <p className="adm-empty">No photos yet &mdash; upload your first.</p>
-      ) : (
-        <div
+          {busy ? "Compressing…" : "Upload photographs"}
+        </span>
+        <span
+          className="lede"
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 150px), 1fr))",
-            gap: 16,
+            fontStyle: "italic",
+            color: "var(--muted)",
+            fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
+            maxWidth: "44ch",
           }}
         >
-          {photos.map((photo) => (
-            <PhotoCard key={photo.id} photo={photo} />
-          ))}
+          {busy
+            ? "Holding still while the cloth settles."
+            : "Drop a piece of cloth, a look, a detail — we keep it ready to place."}
+        </span>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          disabled={busy}
+          onChange={onFiles}
+          style={{
+            position: "absolute",
+            width: 1,
+            height: 1,
+            padding: 0,
+            margin: -1,
+            overflow: "hidden",
+            clip: "rect(0 0 0 0)",
+            whiteSpace: "nowrap",
+            border: 0,
+          }}
+        />
+      </label>
+
+      {photos.length === 0 ? (
+        <p className="adm-empty">Nothing in the library yet &mdash; add the first.</p>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 3vw, 32px)" }}>
+          <p className="mono tnum" style={{ color: "var(--muted)", margin: 0, letterSpacing: "0.16em" }}>
+            {photos.length} {photos.length === 1 ? "image" : "images"} in the library
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 168px), 1fr))",
+              gap: "clamp(20px, 3vw, 36px)",
+            }}
+          >
+            {photos.map((photo) => (
+              <PhotoCard key={photo.id} photo={photo} />
+            ))}
+          </div>
         </div>
       )}
+
+      {/* Storage note — one quiet mono line, the house's aside. */}
+      <p className="mono" style={{ color: "var(--muted)", margin: 0, lineHeight: 1.7, maxWidth: "70ch", letterSpacing: "0.1em" }}>
+        Kept in this browser for now, gently compressed. In time these move to Storage and return real CDN URLs.
+      </p>
     </div>
   );
 }

@@ -79,33 +79,31 @@ export function CategoriesAdmin() {
     }
   }
 
+  const count = categories.length;
+
   return (
     <section>
+      {/* The topbar owns the title; here only a quiet house-voice count + the action. */}
       <header style={head}>
-        <div>
-          <p className="cap" style={{ margin: 0 }}>Collections</p>
-          <p className="lede" style={{ margin: "6px 0 0", maxWidth: "46ch" }}>
-            The taxonomy behind the maison &mdash; order, label, and editorial framing for every line.
-          </p>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
-          <span className="mono tnum" style={{ color: "var(--muted)" }}>
-            {categories.length} total
-          </span>
-          {!editing && (
-            <button type="button" className="adm-btn press" onClick={openNew}>
-              New collection
-            </button>
-          )}
-        </div>
+        <p className="mono" style={{ margin: 0, color: "var(--muted)" }}>
+          <span className="tnum">{count}</span>
+          {count === 1 ? " chapter" : " chapters"} in the house
+        </p>
+        {!editing && (
+          <button type="button" className="adm-btn press" onClick={openNew}>
+            New Collection
+          </button>
+        )}
       </header>
 
       {editing && (
-        <div className="adm-card" style={{ marginBottom: 28 }}>
-          <p className="mono" style={{ margin: "0 0 18px", color: "var(--clay)" }}>
-            {editing.id ? "Edit collection" : "New collection"}
+        <div className="adm-card" style={{ marginBottom: 32 }}>
+          <p className="over" style={{ margin: "0 0 22px", color: "var(--clay)" }}>
+            {editing.id ? "Editing a collection" : "A new collection"}
           </p>
 
+          {/* The chapter — what a client reads. */}
+          <p className="over" style={subhead}>The chapter</p>
           <div style={grid}>
             <div style={{ gridColumn: "1 / -1" }}>
               <label className="adm-label" htmlFor="cat-label">Label</label>
@@ -131,7 +129,11 @@ export function CategoriesAdmin() {
                 style={{ resize: "vertical", minHeight: 64 }}
               />
             </div>
+          </div>
 
+          {/* The framing — how the house numbers and shades it. */}
+          <p className="over" style={subheadSpaced}>The framing</p>
+          <div style={grid}>
             <div>
               <label className="adm-label" htmlFor="cat-n">Numeral</label>
               <input
@@ -168,7 +170,11 @@ export function CategoriesAdmin() {
                 inputMode="numeric"
               />
             </div>
+          </div>
 
+          {/* Where it lives — link + cover. */}
+          <p className="over" style={subheadSpaced}>Where it lives</p>
+          <div style={grid}>
             <div style={{ gridColumn: "1 / -1" }}>
               <label className="adm-label" htmlFor="cat-href">Link (href)</label>
               <input
@@ -206,7 +212,7 @@ export function CategoriesAdmin() {
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: 12, marginTop: 22, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 12, marginTop: 26, flexWrap: "wrap" }}>
             <button type="button" className="adm-btn press" onClick={save} disabled={!editing.label.trim()}>
               {editing.id ? "Save changes" : "Save collection"}
             </button>
@@ -217,28 +223,23 @@ export function CategoriesAdmin() {
         </div>
       )}
 
-      {categories.length === 0 && !editing ? (
-        <p className="adm-empty">No collections yet.</p>
-      ) : categories.length === 0 ? null : (
+      {count === 0 && !editing ? (
+        <p className="adm-empty">No collections yet &mdash; name the first chapter.</p>
+      ) : count === 0 ? null : (
         <div>
-          <div className="adm-tr adm-cat-head" style={rowGrid}>
-            <span className="adm-th">Cover</span>
-            <span className="adm-th">Collection</span>
-            <span className="adm-th tnum">No.</span>
-            <span className="adm-th">Tone</span>
-            <span className="adm-th" style={{ textAlign: "center" }}>Order</span>
-            <span className="adm-th" style={{ textAlign: "right" }}>Actions</span>
-          </div>
-
           {categories.map((c, i) => (
-            <div key={c.id} className="adm-tr adm-cat-row" style={rowGrid}>
+            <div key={c.id} className="adm-row adm-cat-row" style={rowGrid}>
+              <span className="adm-index tnum" aria-hidden="true">
+                {c.n || String(i + 1).padStart(2, "0")}
+              </span>
+
               <div style={thumbWrap}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img className="adm-thumb" src={c.img} alt="" />
               </div>
 
               <div style={{ minWidth: 0 }}>
-                <h3 className="display d-3" style={{ margin: 0 }}>{c.label}</h3>
+                <h3 className="adm-name" style={{ margin: 0 }}>{c.label}</h3>
                 {c.desc && (
                   <p
                     className="cap"
@@ -261,42 +262,38 @@ export function CategoriesAdmin() {
                 </p>
               </div>
 
-              <span className="mono tnum adm-cat-cell" style={{ color: "var(--ink-2)" }}>
-                <span className="adm-cat-mlabel">No. </span>{c.n || "—"}
+              <span className="mono adm-cat-tone" style={{ color: "var(--muted)" }}>
+                {c.tone}
               </span>
 
-              <span className="mono adm-cat-cell" style={{ color: "var(--muted)" }}>
-                <span className="adm-cat-mlabel">Tone </span>{c.tone}
-              </span>
-
-              <div style={moveWrap} className="adm-cat-cell">
+              <div style={moveWrap} className="adm-cat-reorder">
                 <button
                   type="button"
-                  className="adm-move press"
+                  className="adm-quiet"
                   onClick={() => move(i, -1)}
                   disabled={i === 0}
-                  aria-label={`Move ${c.label} up`}
-                  title="Move up"
+                  aria-label={`Move ${c.label} earlier`}
+                  title="Move earlier"
                 >
-                  ↑
+                  Up
                 </button>
                 <button
                   type="button"
-                  className="adm-move press"
+                  className="adm-quiet"
                   onClick={() => move(i, 1)}
                   disabled={i === categories.length - 1}
-                  aria-label={`Move ${c.label} down`}
-                  title="Move down"
+                  aria-label={`Move ${c.label} later`}
+                  title="Move later"
                 >
-                  ↓
+                  Down
                 </button>
               </div>
 
-              <div style={actionsWrap} className="adm-cat-cell">
-                <button type="button" className="adm-btn-ghost press adm-act" onClick={() => openEdit(c)}>
+              <div style={actionsWrap}>
+                <button type="button" className="adm-quiet press" onClick={() => openEdit(c)}>
                   Edit
                 </button>
-                <button type="button" className="adm-btn-danger press adm-act" onClick={() => remove(c)}>
+                <button type="button" className="adm-quiet adm-quiet--danger press" onClick={() => remove(c)}>
                   Delete
                 </button>
               </div>
@@ -306,58 +303,53 @@ export function CategoriesAdmin() {
       )}
 
       <style>{`
-        .adm-move {
-          width: 30px;
-          height: 30px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: transparent;
-          border: 1px solid var(--line);
-          color: var(--ink-2);
-          font-family: var(--ff-sans);
-          font-size: 0.8rem;
-          line-height: 1;
-          cursor: pointer;
-          transition: border-color 0.25s, color 0.25s, transform 0.16s;
+        /* Reorder buttons read disabled at the extremes — dim them past the quiet base. */
+        .adm-cat-reorder .adm-quiet:disabled {
+          opacity: 0.18;
+          cursor: not-allowed;
         }
-        .adm-move:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
-        .adm-move:disabled { opacity: 0.3; cursor: not-allowed; }
-        .adm-act { height: 34px; padding: 0 14px; }
-        .adm-cat-mlabel { display: none; }
+        .adm-row:hover .adm-cat-reorder .adm-quiet:disabled,
+        .adm-row:focus-within .adm-cat-reorder .adm-quiet:disabled {
+          opacity: 0.18;
+        }
+        .adm-cat-reorder .adm-quiet:disabled::after { display: none; }
 
         @media (max-width: 880px) {
-          .adm-cat-head { display: none !important; }
           .adm-cat-row {
-            grid-template-columns: 84px minmax(0, 1fr) !important;
+            grid-template-columns: 30px 72px minmax(0, 1fr) !important;
             grid-template-areas:
-              "cover main"
-              "cover meta"
-              "actions actions" !important;
+              "idx  cover main"
+              "idx  cover meta"
+              "idx  cover reorder"
+              "actions actions actions" !important;
             row-gap: 12px !important;
             column-gap: 16px !important;
             align-items: start !important;
           }
-          .adm-cat-row > :nth-child(1) { grid-area: cover; }
-          .adm-cat-row > :nth-child(2) { grid-area: main; }
-          .adm-cat-row > :nth-child(3),
-          .adm-cat-row > :nth-child(4) {
+          .adm-cat-row > :nth-child(1) { grid-area: idx; }
+          .adm-cat-row > :nth-child(2) { grid-area: cover; }
+          .adm-cat-row > :nth-child(3) { grid-area: main; }
+          .adm-cat-tone {
             grid-area: meta;
-            display: inline-flex !important;
-            margin-right: 16px;
+            align-self: center;
           }
-          .adm-cat-row > :nth-child(5) {
-            grid-area: actions;
+          .adm-cat-reorder {
+            grid-area: reorder;
             justify-content: flex-start !important;
           }
-          .adm-cat-row > :nth-child(6) {
+          .adm-cat-row > :last-child {
             grid-area: actions;
-            justify-content: flex-end !important;
+            justify-content: flex-start !important;
+            gap: 22px !important;
+            border-top: 1px solid var(--line);
+            padding-top: 4px;
           }
         }
         @media (max-width: 440px) {
-          .adm-cat-row { grid-template-columns: 64px minmax(0, 1fr) !important; }
-          .adm-act { padding: 0 12px !important; }
+          .adm-cat-row {
+            grid-template-columns: 24px 60px minmax(0, 1fr) !important;
+            column-gap: 12px !important;
+          }
         }
       `}</style>
     </section>
@@ -366,7 +358,7 @@ export function CategoriesAdmin() {
 
 const head: CSSProperties = {
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "center",
   justifyContent: "space-between",
   gap: 20,
   flexWrap: "wrap",
@@ -379,8 +371,18 @@ const grid: CSSProperties = {
   gap: 16,
 };
 
+const subhead: CSSProperties = {
+  margin: "0 0 14px",
+  color: "var(--muted)",
+};
+
+const subheadSpaced: CSSProperties = {
+  margin: "26px 0 14px",
+  color: "var(--muted)",
+};
+
 const rowGrid: CSSProperties = {
-  gridTemplateColumns: "64px minmax(0, 1fr) 56px 90px 80px auto",
+  gridTemplateColumns: "auto 64px minmax(0, 1fr) 80px auto auto",
 };
 
 const thumbWrap: CSSProperties = {
@@ -389,12 +391,13 @@ const thumbWrap: CSSProperties = {
 
 const moveWrap: CSSProperties = {
   display: "flex",
-  gap: 6,
-  justifyContent: "center",
+  gap: 14,
+  alignItems: "center",
 };
 
 const actionsWrap: CSSProperties = {
   display: "flex",
-  gap: 8,
+  gap: 18,
   justifyContent: "flex-end",
+  alignItems: "center",
 };
